@@ -13,4 +13,4 @@ int main(){
     printf("\n Sixe of float pointer = %d",sizeof(pfnum));
     printf("\n Sixe of double pointer = %d",sizeof(pdnum));
     printf("\n Sixe of long pointer = %d",sizeof(plnum));
-}
+} 

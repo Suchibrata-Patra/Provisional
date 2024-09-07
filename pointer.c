@@ -9,4 +9,4 @@ int main(){
     printf("num = %d\n",num);
     printf("pnum = %u\n",pnum);
     printf("*pnum = %d\n",*pnum);
-}
+} 

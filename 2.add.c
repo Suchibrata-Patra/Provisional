@@ -9,4 +9,4 @@ int main(){
     *psum = *pnum1+*pnum2;
     printf("%f",*psum);    
     printf("\n \n");
-}
+} 

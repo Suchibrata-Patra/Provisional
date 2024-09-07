@@ -14,4 +14,4 @@ int main(){
     sum(&num1,&num2,&total);
     printf("%d",total);
     return 0;
-}
+} 
