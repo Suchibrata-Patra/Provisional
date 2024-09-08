@@ -1,1 +1,1 @@
-[![GitHub Streak](https://streak-stats.demolab.com?user=pSuchi&theme=whatsapp-light)](https://git.io/streak-stats)
+[![GitHub Streak](https://psuhi-strak-stats.vercel.app?user=pSuchi)](https://git.io/streak-stats)
