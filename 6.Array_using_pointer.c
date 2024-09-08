@@ -3,16 +3,23 @@
 
 int main() {
     system("clear");
-    int arr[5] = {1, 2, 3, 4, 5};
-    int *parr = &arr[0], i;
+    int arr[5] = {10, 20, 30, 40, 50};
+    int *parr = arr;
 
-    // Adjust the loop to avoid out-of-bounds access
-    for (i = 0; i < 5; i++) {
-        printf("%d ", *parr);  // Dereference the pointer to get the value
-        parr++;                 // Move the pointer to the next element
+    printf("Array elements using pointer:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *(parr + i));
     }
 
     printf("\n");
+
+    printf("Array elements by incrementing the pointer:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *parr); 
+        parr++;                
+    }
+
+    printf("\n");
+
     return 0;
 }
- 

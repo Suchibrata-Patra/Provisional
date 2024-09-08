@@ -10,4 +10,4 @@ long main(){
     printf("\n The size of Signed Character is : %d",sizeof(signed char));
     printf("\n The size of float is : %d",sizeof(float));
     printf("\n The size of double is : %d",sizeof(double));
-} 
+}

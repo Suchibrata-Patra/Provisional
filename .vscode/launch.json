@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/suchibratapatra/Desktop/DSA",
-      "program": "/Users/suchibratapatra/Desktop/DSA/build/Debug/outDebug"
+      "cwd": "/Users/suchibratapatra/Desktop/DSA/Linked List",
+      "program": "/Users/suchibratapatra/Desktop/DSA/Linked List/build/Debug/outDebug"
     }
   ]
 }
