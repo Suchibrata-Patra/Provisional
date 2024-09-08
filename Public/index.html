@@ -1,42 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+  </style>
+
+
+  <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Roboto", sans-serif;
       margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
     }
 
-    select, input, button {
-      margin: 10px;
-      padding: 8px;
+    select,
+    input,
+    button {
+      margin: 6px 0;
+      padding: 6px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      font-family: "Roboto", sans-serif;
+    }
+
+    select:focus,
+    input:focus,
+    button:hover {
+      background-color: #eaeaea;
+      outline: none;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      padding: 6px 12px;
+    }
+
+    button:hover {
+      background-color: #45a049;
     }
 
     table {
       width: 100%;
       margin-top: 20px;
       border-collapse: collapse;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      background-color: white;
+      font-family: "Roboto", sans-serif;
     }
 
-    th, td {
+    th,
+    td {
       border: 1px solid #ddd;
-      padding: 8px;
+      padding: 6px;
       text-align: left;
+      font-size: 14px;
     }
 
     th {
       background-color: #f2f2f2;
+      color: #333;
+      font-weight: 500;
     }
 
-    h1, h2 {
+    td {
+      background-color: #fff;
+    }
+
+    td:hover {
+      background-color: #f9f9f9;
+    }
+
+    h1,
+    h2 {
       color: #333;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-family: "Roboto", sans-serif;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    /* Grid layout for teacher list */
+    #teacherList {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    #teacherList div {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      padding: 6px;
+      /* Reduced padding for a more condensed look */
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+
+    #teacherList div:hover {
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Spacing between checkbox, blank box, and label */
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      /* Reduced padding for a more compact look */
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .checkbox-container:hover {
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .checkbox-container input[type="checkbox"] {
+      margin-right: 8px;
+      /* Reduced space between checkbox and label */
+      transform: scale(1.1);
+      /* Slightly smaller scale for a more compact look */
+      cursor: pointer;
+    }
+
+    .checkbox-container label {
+      margin-left: 4px;
+      /* Reduced space between checkbox and label */
+      font-size: 14px;
+      /* Smaller font size for a condensed look */
+      cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+    }
+
+    @media (max-width: 992px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      }
+    }
+
+    @media (max-width: 400px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      }
     }
   </style>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 </head>
+
 <body>
   <div>
     <select id="daySelect" onchange="loadSchedule()">
@@ -52,8 +206,17 @@
   <div id="teacherSelectionSection" style="display: none">
     <!-- <h2>Select Replacement Teachers</h2> -->
     <div id="teacherList">
-      <!-- Teacher checkboxes will be dynamically added here -->
+      <div class="checkbox-container">
+        <input type="checkbox" id="teacher1">
+        <label for="teacher1">Teacher 1</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="teacher2">
+        <label for="teacher2">Teacher 2</label>
+      </div>
+      <!-- Add more checkboxes and labels as needed -->
     </div>
+
     <button onclick="generateProvisionalRoutine()">Generate Routine</button>
   </div>
 
@@ -74,7 +237,7 @@
       </tbody>
     </table>
   </div>
-  
+
 
   <!-- <h1>Weekly Schedule</h1> -->
   <div id="schedule-container"></div>
@@ -223,60 +386,61 @@
       }
     }
   </script>
-  
+
   <script>
     async function fetchSchedule() {
-        try {
-            // Fetch the schedule JSON file
-            const response = await fetch('schedule.json');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const schedule = await response.json();
-
-            // Function to create and display the table
-            function displaySchedule(day) {
-                const container = document.getElementById('schedule-container');
-                let tableHtml = '<table>';
-
-                // Create table headers
-                tableHtml += '<thead><tr><th>Day</th><th>Class</th><th>Section</th><th>Subject</th><th>Teacher</th><th>Time Slot</th></tr></thead><tbody>';
-
-                // Display schedule for the selected day
-                if (schedule.schedule[day]) {
-                    schedule.schedule[day].forEach(entry => {
-                        tableHtml += `<tr><td>${day}</td><td>${entry.class}</td><td>${entry.section}</td><td>${entry.subject}</td><td>${entry.teacher}</td><td>${entry.timeSlot}</td></tr>`;
-                    });
-                } else {
-                    tableHtml += '<tr><td colspan="6">No schedule available for the selected day</td></tr>';
-                }
-
-                tableHtml += '</tbody></table>';
-                container.innerHTML = tableHtml;
-            }
-
-            // Load schedule for the selected day
-            document.getElementById('daySelect').addEventListener('change', function () {
-                const selectedDay = this.value;
-                displaySchedule(selectedDay);
-            });
-
-            // Initial display based on the default selected day
-            const initialDay = document.getElementById('daySelect').value;
-            if (initialDay) {
-                displaySchedule(initialDay);
-            }
-
-        } catch (error) {
-            console.error('Error fetching schedule:', error);
+      try {
+        // Fetch the schedule JSON file
+        const response = await fetch('schedule.json');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        const schedule = await response.json();
+
+        // Function to create and display the table
+        function displaySchedule(day) {
+          const container = document.getElementById('schedule-container');
+          let tableHtml = '<table>';
+
+          // Create table headers
+          tableHtml += '<thead><tr><th>Day</th><th>Class</th><th>Section</th><th>Subject</th><th>Teacher</th><th>Time Slot</th></tr></thead><tbody>';
+
+          // Display schedule for the selected day
+          if (schedule.schedule[day]) {
+            schedule.schedule[day].forEach(entry => {
+              tableHtml += `<tr><td>${day}</td><td>${entry.class}</td><td>${entry.section}</td><td>${entry.subject}</td><td>${entry.teacher}</td><td>${entry.timeSlot}</td></tr>`;
+            });
+          } else {
+            tableHtml += '<tr><td colspan="6">No schedule available for the selected day</td></tr>';
+          }
+
+          tableHtml += '</tbody></table>';
+          container.innerHTML = tableHtml;
+        }
+
+        // Load schedule for the selected day
+        document.getElementById('daySelect').addEventListener('change', function () {
+          const selectedDay = this.value;
+          displaySchedule(selectedDay);
+        });
+
+        // Initial display based on the default selected day
+        const initialDay = document.getElementById('daySelect').value;
+        if (initialDay) {
+          displaySchedule(initialDay);
+        }
+
+      } catch (error) {
+        console.error('Error fetching schedule:', error);
+      }
     }
 
     // Fetch and display the schedule on page load
     fetchSchedule();
-</script>
+  </script>
 
 
 
 </body>
+
 </html>
