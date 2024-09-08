@@ -34,6 +34,8 @@
       color: #333;
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
   <div>
@@ -52,7 +54,7 @@
     <div id="teacherList">
       <!-- Teacher checkboxes will be dynamically added here -->
     </div>
-    <button onclick="generateProvisionalRoutine()">Generate Provisional Routine</button>
+    <button onclick="generateProvisionalRoutine()">Generate Routine</button>
   </div>
 
   <div id="provisionalRoutineSection" style="display: none">
@@ -72,6 +74,7 @@
       </tbody>
     </table>
   </div>
+  
 
   <!-- <h1>Weekly Schedule</h1> -->
   <div id="schedule-container"></div>
@@ -272,6 +275,7 @@
     // Fetch and display the schedule on page load
     fetchSchedule();
 </script>
+
 
 
 </body>
