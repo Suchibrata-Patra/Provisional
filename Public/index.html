@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    select, input, button {
+      margin: 10px;
+      padding: 8px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <select id="daySelect" onchange="loadSchedule()">
+      <option value="">-- Select a day --</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+    </select>
+  </div>
+
+  <div id="teacherSelectionSection" style="display: none">
+    <h2>Select Replacement Teachers</h2>
+    <div id="teacherList">
+      <!-- Teacher checkboxes will be dynamically added here -->
+    </div>
+    <button onclick="generateProvisionalRoutine()">Generate Provisional Routine</button>
+  </div>
+
+  <div id="provisionalRoutineSection" style="display: none">
+    <h2>Provisional Routine</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Section</th>
+          <th>Original Teacher</th>
+          <th>Replacement Teacher</th>
+          <th>Time Slot</th>
+        </tr>
+      </thead>
+      <tbody id="provisionalTable">
+        <!-- Provisional routine will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let scheduleData = {};
+    let teacherClasses = {};
+    let absentTeachers = [];
+    let availableTeachers = [];
+    let replacementTeachers = [];
+
+    // Fetch the schedule data
+    function fetchScheduleData() {
+      fetch("schedule.json")
+        .then((response) => response.json())
+        .then((data) => {
+          scheduleData = data.schedule;
+          generateTeacherClasses();
+          loadAvailableTeachers();
+        })
+        .catch((error) => console.error("Error fetching schedule data:", error));
+    }
+
+    // Generate the number of classes each teacher has
+    function generateTeacherClasses() {
+      teacherClasses = {};
+      Object.values(scheduleData).forEach((entries) => {
+        entries.forEach((entry) => {
+          if (!teacherClasses[entry.teacher]) {
+            teacherClasses[entry.teacher] = 0;
+          }
+          teacherClasses[entry.teacher]++;
+        });
+      });
+    }
+
+    // Load available teachers
+    function loadAvailableTeachers() {
+      availableTeachers = new Set();
+      Object.values(scheduleData).forEach((entries) => {
+        entries.forEach((entry) => {
+          availableTeachers.add(entry.teacher);
+        });
+      });
+      availableTeachers = Array.from(availableTeachers);
+    }
+
+    window.onload = fetchScheduleData;
+
+    // Load the schedule for the selected day
+    function loadSchedule() {
+      const day = document.getElementById("daySelect").value;
+
+      if (day) {
+        absentTeachers = [];
+        document.getElementById("teacherSelectionSection").style.display = "block";
+
+        if (scheduleData[day]) {
+          populateTeacherList();
+
+          // Show absent teachers as an alert after teacher list is populated
+          setTimeout(() => {
+            alert(`Absent Teachers for ${day}: ${absentTeachers.join(', ')}`);
+          }, 100);
+        } else {
+          document.getElementById("teacherList").innerHTML = "<p>No schedule available for the selected day</p>";
+        }
+      } else {
+        document.getElementById("teacherSelectionSection").style.display = "none";
+      }
+    }
+
+    // Populate the teacher checkbox list
+    function populateTeacherList() {
+      const teacherList = document.getElementById("teacherList");
+      teacherList.innerHTML = ""; // Clear previous data
+
+      if (availableTeachers.length > 0) {
+        availableTeachers.forEach((teacher) => {
+          let checkbox = `<div>
+            <input type="checkbox" id="teacher-${teacher}" value="${teacher}" onchange="updateAbsentTeachers()">
+            <label for="teacher-${teacher}">${teacher}</label>
+          </div>`;
+          teacherList.innerHTML += checkbox;
+        });
+      } else {
+        teacherList.innerHTML = "<p>No teachers available</p>";
+      }
+    }
+
+    // Update the list of absent teachers based on selected checkboxes
+    function updateAbsentTeachers() {
+      absentTeachers = Array.from(document.querySelectorAll('#teacherList input:checked')).map(input => input.value);
+    }
+
+    // Generate provisional routine based on available teachers
+    function generateProvisionalRoutine() {
+      const day = document.getElementById("daySelect").value;
+      const provisionalTable = document.getElementById("provisionalTable");
+      provisionalTable.innerHTML = "";
+
+      if (day && scheduleData[day]) {
+        replacementTeachers = availableTeachers.filter(teacher => !absentTeachers.includes(teacher));
+
+        // Create a map to track the number of classes for each replacement teacher
+        let teacherClassCount = {};
+        replacementTeachers.forEach((teacher) => {
+          teacherClassCount[teacher] = 0;
+        });
+
+        // Count classes for each available teacher
+        scheduleData[day].forEach((entry) => {
+          if (replacementTeachers.includes(entry.teacher)) {
+            teacherClassCount[entry.teacher]++;
+          }
+        });
+
+        // Sort teachers by the number of classes
+        replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
+
+        // Generate the provisional routine for absent teachers
+        scheduleData[day].forEach((entry) => {
+          if (absentTeachers.includes(entry.teacher)) {
+            let replacementTeacher = replacementTeachers.shift(); // Get the teacher with the least number of classes
+
+            // Add the replacement teacher back and re-sort
+            if (replacementTeacher) {
+              replacementTeachers.push(replacementTeacher);
+              replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
+            }
+
+            let row = `<tr>
+              <td>${entry.class}</td>
+              <td>${entry.section}</td>
+              <td>${entry.teacher}</td>
+              <td>${replacementTeacher || "N/A"}</td>
+              <td>${entry.timeSlot}</td>
+            </tr>`;
+            provisionalTable.innerHTML += row;
+          }
+        });
+
+        document.getElementById("provisionalRoutineSection").style.display = "block";
+      } else {
+        document.getElementById("provisionalRoutineSection").style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
