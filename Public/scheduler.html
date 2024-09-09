@@ -291,7 +291,7 @@
     <button onclick="generateProvisionalRoutine()">Generate Routine</button>
   </div>
 
-  <div id="provisionalRoutineSection">
+  <div id="provisionalRoutineSection" style="display: none;">
     <h2>Provisional Routine</h2>
     <button class="print-button" onclick="printSection()">Print</button>
 
@@ -328,8 +328,8 @@
     }
 </script>
 
-  <!-- <h1>Weekly Schedule</h1> -->
-  <div id="schedule-container">
+  <div id="schedule-container" >
+    <!-- <h3>Weekly Schedule</h3> -->
 
   </div>
 
@@ -496,24 +496,27 @@
 
         // Function to create and display the table
         function displaySchedule(day) {
-          const container = document.getElementById('schedule-container');
-          let tableHtml = '<table>';
+    const container = document.getElementById('schedule-container');
+    let tableHtml = '<h2>Daily Schedule</h2>'; // Add heading
 
-          // Create table headers
-          tableHtml += '<thead><tr><th>Day</th><th>Class</th><th>Section</th><th>Subject</th><th>Teacher</th><th>Time Slot</th></tr></thead><tbody>';
+    tableHtml += '<table>';
 
-          // Display schedule for the selected day
-          if (schedule.schedule[day]) {
-            schedule.schedule[day].forEach(entry => {
-              tableHtml += `<tr><td>${day}</td><td>${entry.class}</td><td>${entry.section}</td><td>${entry.subject}</td><td>${entry.teacher}</td><td>${entry.timeSlot}</td></tr>`;
-            });
-          } else {
-            tableHtml += '<tr><td colspan="6">No schedule available for the selected day</td></tr>';
-          }
+    // Create table headers
+    tableHtml += '<thead><tr><th>Day</th><th>Class</th><th>Section</th><th>Subject</th><th>Teacher</th><th>Time Slot</th></tr></thead><tbody>';
 
-          tableHtml += '</tbody></table>';
-          container.innerHTML = tableHtml;
-        }
+    // Display schedule for the selected day
+    if (schedule.schedule[day]) {
+        schedule.schedule[day].forEach(entry => {
+            tableHtml += `<tr><td>${day}</td><td>${entry.class}</td><td>${entry.section}</td><td>${entry.subject}</td><td>${entry.teacher}</td><td>${entry.timeSlot}</td></tr>`;
+        });
+    } else {
+        tableHtml += '<tr><td colspan="6">No schedule available for the selected day</td></tr>';
+    }
+
+    tableHtml += '</tbody></table>';
+    container.innerHTML = tableHtml;
+}
+
 
         // Load schedule for the selected day
         document.getElementById('daySelect').addEventListener('change', function () {
