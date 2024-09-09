@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<title>Test</title>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -117,44 +117,53 @@
       box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
       transition: box-shadow 0.3s ease;
     }
+  
 
     #teacherList div:hover {
       box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     }
+/* Enhanced checkbox container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Increased padding for better spacing */
+  background-color: #a01515;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Softer rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Slightly more pronounced shadow */
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
 
-    /* Spacing between checkbox, blank box, and label */
-    .checkbox-container {
-      display: flex;
-      align-items: center;
-      padding: 4px;
-      /* Reduced padding for a more compact look */
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-      transition: box-shadow 0.3s ease, background-color 0.3s ease;
-    }
+.checkbox-container:hover {
+  background-color: #f0f0f0; /* Lightened background on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); /* Stronger shadow on hover */
+  transform: scale(1.02); /* Slight hover zoom effect */
+}
 
-    .checkbox-container:hover {
-      background-color: #f9f9f9;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+.checkbox-container input[type="checkbox"] {
+  margin-right: 12px; /* Increased space between checkbox and label */
+  transform: scale(1.2);
+  cursor: pointer;
+}
 
-    .checkbox-container input[type="checkbox"] {
-      margin-right: 8px;
-      /* Reduced space between checkbox and label */
-      transform: scale(1.1);
-      /* Slightly smaller scale for a more compact look */
-      cursor: pointer;
-    }
+.checkbox-container label {
+  margin-left: 8px; /* Increased space between checkbox and label */
+  font-size: 15px;
+  cursor: pointer;
+  padding: 2px 6px;
+  transition: color 0.2s ease, padding 0.3s ease;
+}
 
-    .checkbox-container label {
-      margin-left: 4px;
-      /* Reduced space between checkbox and label */
-      font-size: 14px;
-      /* Smaller font size for a condensed look */
-      cursor: pointer;
-    }
+
+.checkbox-container label:hover {
+  color: #007bff; /* Color change on hover */
+  padding-left: 8px; /* Slight padding effect on hover */
+}
+
+/* Optional: Checkbox checked style */
+.checkbox-container input[type="checkbox"]:checked + label {
+  font-weight: bold; /* Bolder font for selected checkboxes */
+}
 
     /* Responsive adjustments */
     @media (max-width: 1200px) {
@@ -196,11 +205,11 @@
   width: 100%;
   height: 100%;
   background: #EEEEEE; /* Slightly transparent background */
-  color: #134B70;
+  color: #000000;
   display: none; /* Hidden by default */
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 9;
 }
 
 .loader {
@@ -208,7 +217,7 @@
   height: 80px;
   background: url('spinner.png') no-repeat center center;
   background-size: contain;
-  animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
@@ -338,7 +347,7 @@
 
           // Show absent teachers as an alert after teacher list is populated
           setTimeout(() => {
-            alert(`Absent Teachers for ${day}: ${absentTeachers.join(', ')}`);
+            // alert(`Select Absent Teachers for ${day}. ${absentTeachers.join(', ')}`);
           }, 100);
         } else {
           document.getElementById("teacherList").innerHTML = "<p>No schedule available for the selected day</p>";
@@ -488,7 +497,8 @@
 <div id="loader-overlay" class="loader-overlay">
   <div class="loader"></div>
   <br>
-  <div class="loader-text">Loading...</div>
+  <div class="loader-text">Generating...</div>
+  
 </div>
 
 
