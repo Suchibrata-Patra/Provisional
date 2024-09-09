@@ -58,3 +58,11 @@ void display() {
         curr = curr->next;
     }
 }
+
+
+int main(){
+    void display(){
+        int count =0;
+        NODE *curr = start
+    }
+}
