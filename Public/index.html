@@ -38,7 +38,7 @@
     }
 
     button {
-      background-color: #4CAF50;
+      background-color: #000000;
       color: white;
       cursor: pointer;
       padding: 6px 12px;
@@ -112,12 +112,12 @@
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 4px;
-      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-      transition: box-shadow 0.3s ease;
+      /* box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); */
+      /* transition: box-shadow 0.3s ease; */
     }
 
     #teacherList div:hover {
-      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+      /* box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1); */
     }
 
     /* Spacing between checkbox, blank box, and label */
@@ -192,9 +192,9 @@
 </head>
 
 <body>
-  <div>
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
     <select id="daySelect" onchange="loadSchedule()">
-      <option value="">-- Select a day --</option>
+      <option value=""> Select a day </option>
       <option value="Monday">Monday</option>
       <option value="Tuesday">Tuesday</option>
       <option value="Wednesday">Wednesday</option>
@@ -202,6 +202,7 @@
       <option value="Friday">Friday</option>
     </select>
   </div>
+  
 
   <div id="teacherSelectionSection" style="display: none">
     <!-- <h2>Select Replacement Teachers</h2> -->
