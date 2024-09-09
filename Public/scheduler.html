@@ -291,59 +291,43 @@
     <button onclick="generateProvisionalRoutine()">Generate Routine</button>
   </div>
 
-  <div id="provisionalRoutineSection" style="display: none;">
+  <div id="provisionalRoutineSection">
     <h2>Provisional Routine</h2>
-    <button class="print-button" onclick="printSection()"
-      style="background-color: black;color: white ;padding: 5px 8px;border-radius: 0px; ">Print</button>
+    <button class="print-button" onclick="printSection()">Print</button>
+
     <table>
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Section</th>
-          <th>Original Teacher</th>
-          <th>Replacement Teacher</th>
-          <th>Time Slot</th>
-          <!-- <th>Signature</th> Added Signature column -->
-        </tr>
-      </thead>
-      <tbody id="provisionalTable">
-        <!-- Provisional routine will be dynamically added here -->
-      </tbody>
+        <thead>
+            <tr>
+                <th>Class</th>
+                <th>Section</th>
+                <th>Original Teacher</th>
+                <th>Replacement Teacher</th>
+                <th>Time Slot</th>
+                <!-- <th>Signature</th> Added Signature column -->
+            </tr>
+        </thead>
+        <tbody id="provisionalTable">
+            <!-- Provisional routine will be dynamically added here -->
+        </tbody>
     </table>
-  </div>
+</div>
 
-  <script>
-    function printSection() {
-      // Create a new window or tab
-      const printWindow = window.open('', '', 'height=600,width=800');
-
-      // Get the content of the div
-      const content = document.getElementById('provisionalRoutineSection').innerHTML;
-
-      // Get the current date and day
-      const today = new Date();
-      const date = today.toLocaleDateString(); // Format: MM/DD/YYYY or based on locale
-      const day = today.toLocaleDateString('en-US', { weekday: 'long' }); // Full weekday name
-
-      // Write the content into the new window's document
-      printWindow.document.write('<html><head><title>Print</title>');
-      printWindow.document.write('<style>table {width: 100%; border-collapse: collapse;} th, td {border: 1px solid #ddd; padding: 8px; text-align: left;} th {background-color: #f4f4f4;}</style>');
-      printWindow.document.write('</head><body>');
-      printWindow.document.write('<div style="line-height:0.6rem;">');
-      printWindow.document.write('<p>Date: ' + date + '</p>');
-      printWindow.document.write('<p>Day: ' + day + '</p>');
-      printWindow.document.write('</div>');
-      printWindow.document.write(content);
-      printWindow.document.write('</body></html>');
-
-      // Close the document to trigger the print dialog
-      printWindow.document.close();
-      printWindow.focus();
-
-      // Print the content
-      printWindow.print();
+<script>
+    function showPrintSection() {
+        document.getElementById('provisionalRoutineSection').style.display = 'block';
     }
-  </script>
+
+    function printSection() {
+        var printSection = document.getElementById('provisionalRoutineSection');
+        var originalDisplay = printSection.style.display;
+        printSection.style.display = 'block';
+        
+        window.print();
+        
+        printSection.style.display = originalDisplay; // Hide it again after printing
+    }
+</script>
+
   <!-- <h1>Weekly Schedule</h1> -->
   <div id="schedule-container">
 
