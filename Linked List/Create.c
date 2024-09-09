@@ -58,4 +58,3 @@ void display() {
         curr = curr->next;
     }
 }
-

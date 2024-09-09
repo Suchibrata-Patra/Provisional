@@ -38,14 +38,16 @@
     }
 
     button {
-      background-color: #000000;
-      color: white;
+      background-color: #e5e5ea;
+      color: Black;
       cursor: pointer;
-      padding: 6px 12px;
+      padding: 7px 15px;
+      /* border: 0.2px solid black; */
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #c7c7cc;
+      color:rgb(0, 0, 0);
     }
 
     table {
@@ -112,12 +114,12 @@
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 4px;
-      /* box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); */
-      /* transition: box-shadow 0.3s ease; */
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease;
     }
 
     #teacherList div:hover {
-      /* box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1); */
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* Spacing between checkbox, blank box, and label */
@@ -184,6 +186,41 @@
         grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
       }
     }
+
+
+/* Loader styles */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #EEEEEE; /* Slightly transparent background */
+  color: #134B70;
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  background: url('spinner.png') no-repeat center center;
+  background-size: contain;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
   </style>
 
 
@@ -336,6 +373,13 @@
 
     // Generate provisional routine based on available teachers
     function generateProvisionalRoutine() {
+      document.getElementById("loader-overlay").style.display = "flex";
+      setTimeout(() => {
+    document.getElementById("loader-overlay").style.display = "none";
+    
+    // Continue with the routine generation logic here
+    // Your existing routine generation code should go here
+  }, 5000);
       const day = document.getElementById("daySelect").value;
       const provisionalTable = document.getElementById("provisionalTable");
       provisionalTable.innerHTML = "";
@@ -440,6 +484,12 @@
     fetchSchedule();
   </script>
 
+<!-- Loader HTML -->
+<div id="loader-overlay" class="loader-overlay">
+  <div class="loader"></div>
+  <br>
+  <div class="loader-text">Loading...</div>
+</div>
 
 
 </body>
