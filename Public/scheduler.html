@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Test</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+  </style>
+
+
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    select,
+    input,
+    button {
+      margin: 6px 0;
+      padding: 6px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      font-family: "Roboto", sans-serif;
+    }
+
+    select:focus,
+    input:focus, 
+    button:hover {
+      background-color: #eaeaea;
+      outline: none;
+    }
+
+    button {
+      background-color: #e5e5ea;
+      color: Black;
+      cursor: pointer;
+      padding: 7px 15px;
+      /* border: 0.2px solid black; */
+    }
+
+    button:hover {
+      background-color: #c7c7cc;
+      color:rgb(0, 0, 0);
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      background-color: white;
+      font-family: "Roboto", sans-serif;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+      font-weight: 500;
+    }
+
+    td {
+      background-color: #fff;
+    }
+
+    td:hover {
+      background-color: #f9f9f9;
+    }
+
+    h1,
+    h2 {
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-family: "Roboto", sans-serif;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    /* Grid layout for teacher list */
+    #teacherList {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    #teacherList div {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      padding: 6px;
+      /* Reduced padding for a more condensed look */
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+  
+
+    #teacherList div:hover {
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    }
+/* Enhanced checkbox container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Increased padding for better spacing */
+  background-color: #a01515;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Softer rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Slightly more pronounced shadow */
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkbox-container:hover {
+  background-color: #f0f0f0; /* Lightened background on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); /* Stronger shadow on hover */
+  transform: scale(1.02); /* Slight hover zoom effect */
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 12px; /* Increased space between checkbox and label */
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  margin-left: 8px; /* Increased space between checkbox and label */
+  font-size: 15px;
+  cursor: pointer;
+  padding: 2px 6px;
+  transition: color 0.2s ease, padding 0.3s ease;
+}
+
+
+.checkbox-container label:hover {
+  color: #007bff; /* Color change on hover */
+  padding-left: 8px; /* Slight padding effect on hover */
+}
+
+/* Optional: Checkbox checked style */
+.checkbox-container input[type="checkbox"]:checked + label {
+  font-weight: bold; /* Bolder font for selected checkboxes */
+}
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+    }
+
+    @media (max-width: 992px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      }
+    }
+
+    @media (max-width: 400px) {
+      #teacherList {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      }
+    }
+
+
+/* Loader styles */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #EEEEEE; /* Slightly transparent background */
+  color: #000000;
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  background: url('spinner.png') no-repeat center center;
+  background-size: contain;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+  </style>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <select id="daySelect" onchange="loadSchedule()">
+      <option value=""> Select a day </option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+    </select>
+  </div>
+  
+
+  <div id="teacherSelectionSection" style="display: none">
+    <!-- <h2>Select Replacement Teachers</h2> -->
+    <div id="teacherList">
+      <div class="checkbox-container">
+        <input type="checkbox" id="teacher1">
+        <label for="teacher1">Teacher 1</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="teacher2">
+        <label for="teacher2">Teacher 2</label>
+      </div>
+      <!-- Add more checkboxes and labels as needed -->
+    </div>
+
+    <button onclick="generateProvisionalRoutine()">Generate Routine</button>
+  </div>
+
+  <div id="provisionalRoutineSection" style="display: none">
+    <h2>Provisional Routine</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Section</th>
+          <th>Original Teacher</th>
+          <th>Replacement Teacher</th>
+          <th>Time Slot</th>
+        </tr>
+      </thead>
+      <tbody id="provisionalTable">
+        <!-- Provisional routine will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- <h1>Weekly Schedule</h1> -->
+  <div id="schedule-container"></div>
+
+  <script>
+    let scheduleData = {};
+    let teacherClasses = {};
+    let absentTeachers = [];
+    let availableTeachers = [];
+    let replacementTeachers = [];
+
+    // Fetch the schedule data
+    function fetchScheduleData() {
+      fetch("schedule.json")
+        .then((response) => response.json())
+        .then((data) => {
+          scheduleData = data.schedule;
+          generateTeacherClasses();
+          loadAvailableTeachers();
+        })
+        .catch((error) => console.error("Error fetching schedule data:", error));
+    }
+
+    // Generate the number of classes each teacher has
+    function generateTeacherClasses() {
+      teacherClasses = {};
+      Object.values(scheduleData).forEach((entries) => {
+        entries.forEach((entry) => {
+          if (!teacherClasses[entry.teacher]) {
+            teacherClasses[entry.teacher] = 0;
+          }
+          teacherClasses[entry.teacher]++;
+        });
+      });
+    }
+
+    // Load available teachers
+    function loadAvailableTeachers() {
+      availableTeachers = new Set();
+      Object.values(scheduleData).forEach((entries) => {
+        entries.forEach((entry) => {
+          availableTeachers.add(entry.teacher);
+        });
+      });
+      availableTeachers = Array.from(availableTeachers);
+    }
+
+    window.onload = fetchScheduleData;
+
+    // Load the schedule for the selected day
+    function loadSchedule() {
+      const day = document.getElementById("daySelect").value;
+
+      if (day) {
+        absentTeachers = [];
+        document.getElementById("teacherSelectionSection").style.display = "block";
+
+        if (scheduleData[day]) {
+          populateTeacherList();
+
+          // Show absent teachers as an alert after teacher list is populated
+          setTimeout(() => {
+            // alert(`Select Absent Teachers for ${day}. ${absentTeachers.join(', ')}`);
+          }, 100);
+        } else {
+          document.getElementById("teacherList").innerHTML = "<p>No schedule available for the selected day</p>";
+        }
+      } else {
+        document.getElementById("teacherSelectionSection").style.display = "none";
+      }
+    }
+
+    // Populate the teacher checkbox list
+    function populateTeacherList() {
+      const teacherList = document.getElementById("teacherList");
+      teacherList.innerHTML = ""; // Clear previous data
+
+      if (availableTeachers.length > 0) {
+        availableTeachers.forEach((teacher) => {
+          let checkbox = `<div>
+            <input type="checkbox" id="teacher-${teacher}" value="${teacher}" onchange="updateAbsentTeachers()">
+            <label for="teacher-${teacher}">${teacher}</label>
+          </div>`;
+          teacherList.innerHTML += checkbox;
+        });
+      } else {
+        teacherList.innerHTML = "<p>No teachers available</p>";
+      }
+    }
+
+    // Update the list of absent teachers based on selected checkboxes
+    function updateAbsentTeachers() {
+      absentTeachers = Array.from(document.querySelectorAll('#teacherList input:checked')).map(input => input.value);
+    }
+
+    // Generate provisional routine based on available teachers
+    function generateProvisionalRoutine() {
+      document.getElementById("loader-overlay").style.display = "flex";
+      setTimeout(() => {
+    document.getElementById("loader-overlay").style.display = "none";
+    
+    // Continue with the routine generation logic here
+    // Your existing routine generation code should go here
+  }, 5000);
+      const day = document.getElementById("daySelect").value;
+      const provisionalTable = document.getElementById("provisionalTable");
+      provisionalTable.innerHTML = "";
+
+      if (day && scheduleData[day]) {
+        replacementTeachers = availableTeachers.filter(teacher => !absentTeachers.includes(teacher));
+
+        // Create a map to track the number of classes for each replacement teacher
+        let teacherClassCount = {};
+        replacementTeachers.forEach((teacher) => {
+          teacherClassCount[teacher] = 0;
+        });
+
+        // Count classes for each available teacher
+        scheduleData[day].forEach((entry) => {
+          if (replacementTeachers.includes(entry.teacher)) {
+            teacherClassCount[entry.teacher]++;
+          }
+        });
+
+        // Sort teachers by the number of classes
+        replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
+
+        // Generate the provisional routine for absent teachers
+        scheduleData[day].forEach((entry) => {
+          if (absentTeachers.includes(entry.teacher)) {
+            let replacementTeacher = replacementTeachers.shift(); // Get the teacher with the least number of classes
+
+            // Add the replacement teacher back and re-sort
+            if (replacementTeacher) {
+              replacementTeachers.push(replacementTeacher);
+              replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
+            }
+
+            let row = `<tr>
+              <td>${entry.class}</td>
+              <td>${entry.section}</td>
+              <td>${entry.teacher}</td>
+              <td>${replacementTeacher || "N/A"}</td>
+              <td>${entry.timeSlot}</td>
+            </tr>`;
+            provisionalTable.innerHTML += row;
+          }
+        });
+
+        document.getElementById("provisionalRoutineSection").style.display = "block";
+      } else {
+        document.getElementById("provisionalRoutineSection").style.display = "none";
+      }
+    }
+  </script>
+
+  <script>
+    async function fetchSchedule() {
+      try {
+        // Fetch the schedule JSON file
+        const response = await fetch('schedule.json');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const schedule = await response.json();
+
+        // Function to create and display the table
+        function displaySchedule(day) {
+          const container = document.getElementById('schedule-container');
+          let tableHtml = '<table>';
+
+          // Create table headers
+          tableHtml += '<thead><tr><th>Day</th><th>Class</th><th>Section</th><th>Subject</th><th>Teacher</th><th>Time Slot</th></tr></thead><tbody>';
+
+          // Display schedule for the selected day
+          if (schedule.schedule[day]) {
+            schedule.schedule[day].forEach(entry => {
+              tableHtml += `<tr><td>${day}</td><td>${entry.class}</td><td>${entry.section}</td><td>${entry.subject}</td><td>${entry.teacher}</td><td>${entry.timeSlot}</td></tr>`;
+            });
+          } else {
+            tableHtml += '<tr><td colspan="6">No schedule available for the selected day</td></tr>';
+          }
+
+          tableHtml += '</tbody></table>';
+          container.innerHTML = tableHtml;
+        }
+
+        // Load schedule for the selected day
+        document.getElementById('daySelect').addEventListener('change', function () {
+          const selectedDay = this.value;
+          displaySchedule(selectedDay);
+        });
+
+        // Initial display based on the default selected day
+        const initialDay = document.getElementById('daySelect').value;
+        if (initialDay) {
+          displaySchedule(initialDay);
+        }
+
+      } catch (error) {
+        console.error('Error fetching schedule:', error);
+      }
+    }
+
+    // Fetch and display the schedule on page load
+    fetchSchedule();
+  </script>
+
+<!-- Loader HTML -->
+<div id="loader-overlay" class="loader-overlay">
+  <div class="loader"></div>
+  <br>
+  <div class="loader-text">Generating...</div>
+  
+</div>
+
+
+</body>
+
+</html>
