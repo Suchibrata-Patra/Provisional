@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Test</title>
+<title>Povisional</title>
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.png">
+
   <script>
-    const today = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = today.toLocaleDateString(undefined, options);
-    document.title = `${formattedDate}`;
-
-
     document.addEventListener('DOMContentLoaded', () => {
       const today = new Date();
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       const formattedDate = today.toLocaleDateString(undefined, options); // Format the current date
 
       // Use innerHTML to insert HTML content
-      document.getElementById('currentDate').innerHTML = `Date : <p style="border:1.5px solid Grey;border-radius:5px;padding:4px 5px;display:inline;">${formattedDate}</p>`;
+      document.getElementById('currentDate').innerHTML = `<p style="border:none;border-radius:5px;padding:4px 5px;display:inline;">${formattedDate}</p>`;
     });
 
 
@@ -34,9 +30,13 @@
     body {
       font-family: "Roboto", sans-serif;
       margin: 20px;
-      background-color: #f9f9f9;
+      /* background-image: url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/56/71/watsonx-timeline-build.gif'); */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #eeeeef;
       color: #333;
       line-height: 1.6;
+      max-width: ;
     }
 
     select,
@@ -52,24 +52,25 @@
     }
 
     select:focus,
-    input:focus,
-    button:hover {
+    input:focus{
       background-color: #eaeaea;
       outline: none;
     }
 
     button {
-      background-color: #e9e9e9;
-      color: rgb(0, 0, 0);
+      background-color: #000000;
+      color: rgb(255, 255, 255);
       cursor: pointer;
-      padding: 12px 16px;
+      padding: 9px 14px;
       border: none;
-      border-radius: 6px;
+      border-radius: 50px;
     }
 
     button:hover {
-      background-color: #e9e9e9;
-      border: 1px solid black;
+      /* background-color: #e9e92e9; */
+      /* background-color: black; */
+      /* border: 2px solid rgb(255, 255, 255); */
+      
     }
 
     table {
@@ -87,11 +88,12 @@
       padding: 6px;
       text-align: left;
       font-size: 14px;
+
     }
 
     th {
       background-color: #f2f2f2;
-      color: #333;
+      color: #000000;
       font-weight: 500;
     }
 
@@ -100,12 +102,12 @@
     }
 
     td:hover {
-      background-color: #f9f9f9;
+      background-color: #eeeeee;
     }
 
     h1,
     h2 {
-      color: #333;
+      color: #0a0a0a;
       font-weight: bold;
       margin-bottom: 10px;
       font-family: "Roboto", sans-serif;
@@ -270,6 +272,52 @@
       margin-top: 20px;
       font-size: 25px;
     }
+
+
+
+    @media (max-width: 768px) {
+      .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .report-error-btn {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .help-btn {
+        font-size: 14px;
+      }
+
+      .icon-text {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar-container {
+        padding: 0 10px;
+      }
+
+      .report-error-btn {
+        font-size: 10px;
+        padding: 8px 12px;
+      }
+
+      .help-btn {
+        font-size: 12px;
+      }
+
+      .icon-text {
+        font-size: 18px;
+      }
+    }
+
+    #navoptions:hover {
+      text-decoration: underline;
+    }
   </style>
 
 
@@ -278,436 +326,502 @@
 </head>
 
 <body>
-  <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
-    <span id="currentDate" style="margin-left: 20px; font-size: 14px; font-weight: 400;"></span>
-    <label for="daySelect" style="margin-right: 10px; font-weight: 400; font-size: 14px;margin-left: 20px;">Choose the
-      Day</label>
-    <select id="daySelect" onchange="loadSchedule()" style="border-radius: 5px;">
-      <option value="">Select</option>
-      <option value="Monday">Monday</option>
-      <option value="Tuesday">Tuesday</option>
-      <option value="Wednesday">Wednesday</option>
-      <option value="Thursday">Thursday</option>
-      <option value="Friday">Friday</option>
-      <option value="Saturday">Saturday</option>
-      <option value="Sunday" disabled>Sunday</option>
-    </select>
-    <!-- Adding the current date here -->
-  </div>
 
+  <!-- Navbar -->
+  <div
+    style="display: flex; align-items: center; justify-content: space-between; width: 100vw; height: 60px;color: #000000; padding: 0 30px; box-sizing: border-box;">
+    <!-- Container for Haggle and Help Button -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <!-- Icon Text -->
+      <div style="font-size: 24px; font-weight: 600; color: #000000;"">Haggle</div>
+      
+      <!-- Help Button -->
+      <button style="background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; padding: 4px 8px;" id="navoptions">
 
+        Help 
+    </button>
 
-  <div id="teacherSelectionSection" style="display: none">
-    <h3 style="font-weight: 400;font-size: 19px;">Check all Absent Teachers</h3>
-    <div id="teacherList">
-      <div class="checkbox-container">
-        <input type="checkbox" id="teacher1">
-        <label for="teacher1">Teacher 1</label>
+      <!-- Edit Schedule -->
+      <button style="background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; padding: 4px;" id="navoptions">
+        Edit Schedule
+    </button>
+    
+    
       </div>
-      <div class="checkbox-container">
-        <input type="checkbox" id="teacher2">
-        <label for="teacher2">Teacher 2</label>
-      </div>
-      <!-- Add more checkboxes and labels as needed -->
-    </div>
 
-    <button onclick="generateProvisionalRoutine()">Generate Routine </button>
-  </div>
-
-  <div id="provisionalRoutineSection" style="display: none;">
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px;">
-      <h2 style="margin: 0;">Provisional Routine</h2>
-      <button class="print-button" onclick="printSection()"
-        style="display: inline-flex; align-items: center; padding: 10px 20px; background-color: #007AFF; color: rgb(255, 255, 255); border: none; border-radius:50px;">
-        <span class="material-symbols-outlined" style="margin-right: 5px; font-size: 20px;">
-          print
+      <!-- Report Error Button -->
+      <button style="background-color: #000000; color: #ffffff; border: none; border-radius: 20px; padding: 10px 15px; font-size: 12px; cursor: pointer; font-weight: 500; margin-right: 10%; display: flex; align-items: center;">
+        Report Error
+        <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 8px;font-weight: 600;">
+            error
         </span>
-        Print
-      </button>
+    </button>
+    
+    </div>
+
+    <!-- Main Content -->
+    <div
+      style="display: flex; align-items: center; justify-content: flex-start; width: 100vw; height: 20%; margin: 0; box-sizing: border-box; padding: 20px;">
+      <div
+        style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; max-width: 600px;">
+        <!-- Date Display -->
+        <span id="currentDate" style="font-size: 24px; font-weight: 600; color: #352626; margin-bottom: 20px;">Date
+          Here</span>
+
+        <!-- Day Picker -->
+        <label for="daySelect" style="font-weight: 400; font-size: 15px; color: #000000; margin-bottom: 2px; display: flex; align-items: center;">
+          Choose the Day
+          <span class="material-symbols-outlined" style="font-size: 20px; margin-left: 8px;">
+              arrow_right_alt
+          </span>
+      </label>
+      
+        <div style="position: relative; width: 100%; max-width: 400px;">
+          <select id="daySelect" onchange="loadSchedule()"
+            style="border-radius: 8px; padding: 10px 20px; font-size: 18px; color: #333; border: 2px solid #000000; background-color: #fff; width: 100%; appearance: none; -webkit-appearance: none; -moz-appearance: none; position: relative; z-index: 1;">
+            <option value="">Select</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday" disabled>Sunday</option>
+          </select>
+          <div
+            style="position: absolute; top: 10px; right: 10px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #000000; pointer-events: none; z-index: 0;">
+          </div>
+        </div>
+      </div>
     </div>
 
 
-    <table>
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Section</th>
-          <th>Original Teacher</th>
-          <th>Replacement Teacher</th>
-          <th>Time Slot</th>
-          <!-- <th>Signature</th> Added Signature column -->
-        </tr>
-      </thead>
-      <tbody id="provisionalTable">
-        <!-- Provisional routine will be dynamically added here -->
-      </tbody>
-    </table>
-  </div>
 
-  <script>
-    function showPrintSection() {
-      document.getElementById('provisionalRoutineSection').style.display = 'block';
-    }
 
-    function printSection() {
-      var printSection = document.getElementById('provisionalRoutineSection');
-      var originalDisplay = printSection.style.display;
-      printSection.style.display = 'block';
 
-      window.print();
+    <div id="teacherSelectionSection" style="display: none; padding:2%;">
+      <h3 style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0;">
+        <span class="material-symbols-outlined" style="margin-right: 8px;">
+            select_check_box
+        </span>
+        Check all Absent Teachers
+    </h3>
+    
+      <div id="teacherList">
+        <div class="checkbox-container">
+          <input type="checkbox" id="teacher1">
+          <label for="teacher1">Teacher 1</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="teacher2">
+          <label for="teacher2">Teacher 2</label>
+        </div>
+        <!-- Add more checkboxes and labels as needed -->
+      </div>
 
-      printSection.style.display = originalDisplay; // Hide it again after printing
-    }
-  </script>
+      <button onclick="generateProvisionalRoutine()" style="display: flex; align-items: center; cursor: pointer;">
+        Generate
+        <span class="material-symbols-outlined" style="font-size: 20px; margin-left: 8px;">
+            arrow_right_alt
+        </span>
+    </button>
+    
+    </div>
 
-  <div id="schedule-container">
-    <!-- <h3>Weekly Schedule</h3> -->
+    <div id="provisionalRoutineSection" style="display: none;padding: 2%;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px;">
+        <h2 style="margin: 0;">Provisional Routine</h2>
+        <button class="print-button" onclick="printSection()"
+          style="display: inline-flex; align-items: center; padding: 10px 20px; background-color: #007AFF; color: rgb(255, 255, 255); border: none; border-radius:50px;">
+          <span class="material-symbols-outlined" style="margin-right: 5px; font-size: 20px;">
+            print
+          </span>
+          Print
+        </button>
+      </div>
 
-  </div>
 
-   <script>
-    let scheduleData = {};
-    let teacherClasses = {};
-    let absentTeachers = [];
-    let availableTeachers = [];
-    let replacementTeachers = [];
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Section</th>
+            <th>Original Teacher</th>
+            <th>Replacement Teacher</th>
+            <th>Time Slot</th>
+            <!-- <th>Signature</th> Added Signature column -->
+          </tr>
+        </thead>
+        <tbody id="provisionalTable">
+          <!-- Provisional routine will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
 
-    // Fetch the schedule data
-    function fetchScheduleData() {
-      fetch("schedule.json")
-        .then((response) => response.json())
-        .then((data) => {
-          scheduleData = data.schedule;
-          generateTeacherClasses();
-          loadAvailableTeachers();
-        })
-        .catch((error) => console.error("Error fetching schedule data:", error));
-    }
-
-    // Generate the number of classes each teacher has
-    function generateTeacherClasses() {
-      teacherClasses = {};
-      Object.values(scheduleData).forEach((entries) => {
-        entries.forEach((entry) => {
-          if (!teacherClasses[entry.teacher]) {
-            teacherClasses[entry.teacher] = 0;
-          }
-          teacherClasses[entry.teacher]++;
-        });
-      });
-    }
-
-    // Load available teachers
-    function loadAvailableTeachers() {
-      availableTeachers = new Set();
-      Object.values(scheduleData).forEach((entries) => {
-        entries.forEach((entry) => {
-          availableTeachers.add(entry.teacher);
-        });
-      });
-      availableTeachers = Array.from(availableTeachers);
-    }
-
-    window.onload = fetchScheduleData;
-
-    // Load the schedule for the selected day
-    function loadSchedule() {
-      const day = document.getElementById("daySelect").value;
-
-      if (day) {
-        absentTeachers = [];
-        document.getElementById("teacherSelectionSection").style.display = "block";
-
-        if (scheduleData[day]) {
-          populateTeacherList();
-
-          // Show absent teachers as an alert after teacher list is populated
-          setTimeout(() => {
-            // alert(`Select Absent Teachers for ${day}. ${absentTeachers.join(', ')}`);
-          }, 100);
-        } else {
-          document.getElementById("teacherList").innerHTML = "<p>No schedule available for the selected day</p>";
-        }
-      } else {
-        document.getElementById("teacherSelectionSection").style.display = "none";
+    <script>
+      function showPrintSection() {
+        document.getElementById('provisionalRoutineSection').style.display = 'block';
       }
-    }
-    // Populate the teacher checkbox list
-    function populateTeacherList() {
-      const teacherList = document.getElementById("teacherList");
-      teacherList.innerHTML = ""; // Clear previous data
 
-      if (availableTeachers.length > 0) {
-        availableTeachers.forEach((teacher) => {
-          let checkbox = `<div>
+      function printSection() {
+        var printSection = document.getElementById('provisionalRoutineSection');
+        var originalDisplay = printSection.style.display;
+        printSection.style.display = 'block';
+
+        window.print();
+
+        printSection.style.display = originalDisplay; // Hide it again after printing
+      }
+    </script>
+
+    <div id="schedule-container" style="padding: 2%;">
+      <!-- <h3>Weekly Schedule</h3> -->
+
+    </div>
+
+    <script>
+      let scheduleData = {};
+      let teacherClasses = {};
+      let absentTeachers = [];
+      let availableTeachers = [];
+      let replacementTeachers = [];
+
+      // Fetch the schedule data
+      function fetchScheduleData() {
+        fetch("schedule.json")
+          .then((response) => response.json())
+          .then((data) => {
+            scheduleData = data.schedule;
+            generateTeacherClasses();
+            loadAvailableTeachers();
+          })
+          .catch((error) => console.error("Error fetching schedule data:", error));
+      }
+
+      // Generate the number of classes each teacher has
+      function generateTeacherClasses() {
+        teacherClasses = {};
+        Object.values(scheduleData).forEach((entries) => {
+          entries.forEach((entry) => {
+            if (!teacherClasses[entry.teacher]) {
+              teacherClasses[entry.teacher] = 0;
+            }
+            teacherClasses[entry.teacher]++;
+          });
+        });
+      }
+
+      // Load available teachers
+      function loadAvailableTeachers() {
+        availableTeachers = new Set();
+        Object.values(scheduleData).forEach((entries) => {
+          entries.forEach((entry) => {
+            availableTeachers.add(entry.teacher);
+          });
+        });
+        availableTeachers = Array.from(availableTeachers);
+      }
+
+      window.onload = fetchScheduleData;
+
+      // Load the schedule for the selected day
+      function loadSchedule() {
+        const day = document.getElementById("daySelect").value;
+
+        if (day) {
+          absentTeachers = [];
+          document.getElementById("teacherSelectionSection").style.display = "block";
+
+          if (scheduleData[day]) {
+            populateTeacherList();
+
+            // Show absent teachers as an alert after teacher list is populated
+            setTimeout(() => {
+              // alert(`Select Absent Teachers for ${day}. ${absentTeachers.join(', ')}`);
+            }, 100);
+          } else {
+            document.getElementById("teacherList").innerHTML = "<p>No schedule available for the selected day</p>";
+          }
+        } else {
+          document.getElementById("teacherSelectionSection").style.display = "none";
+        }
+      }
+      // Populate the teacher checkbox list
+      function populateTeacherList() {
+        const teacherList = document.getElementById("teacherList");
+        teacherList.innerHTML = ""; // Clear previous data
+
+        if (availableTeachers.length > 0) {
+          availableTeachers.forEach((teacher) => {
+            let checkbox = `<div>
             <input type="checkbox" id="teacher-${teacher}" value="${teacher}" onchange="updateAbsentTeachers()">
             <label for="teacher-${teacher}" style="padding-left:5px;">${teacher}</label>
           </div>`;
-          teacherList.innerHTML += checkbox;
-        });
-      } else {
-        teacherList.innerHTML = "<p>No teachers available</p>";
-      }
-    }
-
-    // Update the list of absent teachers based on selected checkboxes
-    function updateAbsentTeachers() {
-      absentTeachers = Array.from(document.querySelectorAll('#teacherList input:checked')).map(input => input.value);
-    }
-
-    // Generate provisional routine based on available teachers
-   // Generate provisional routine based on available teachers
-// Helper function to count consecutive classes for a teacher
-function countConsecutiveClasses(teacher, day) {
-  let teacherClasses = scheduleData[day].filter(entry => entry.teacher === teacher);
-  let timeSlots = teacherClasses.map(entry => entry.timeSlot).sort(); // Sort by time slots
-  let consecutiveCount = 0;
-  let maxConsecutive = 0;
-
-  // Count consecutive time slots
-  for (let i = 1; i < timeSlots.length; i++) {
-    if (timeSlots[i] === timeSlots[i - 1] + 1) {
-      consecutiveCount++;
-    } else {
-      maxConsecutive = Math.max(maxConsecutive, consecutiveCount);
-      consecutiveCount = 0; // Reset if not consecutive
-    }
-  }
-  return Math.max(maxConsecutive, consecutiveCount); // Return the highest consecutive count
-}
-
-// Generate provisional routine based on available teachers
-// Helper function to count consecutive classes for a teacher
-function countConsecutiveClasses(teacher, day) {
-  let teacherClasses = scheduleData[day].filter(entry => entry.teacher === teacher);
-  let timeSlots = teacherClasses.map(entry => entry.timeSlot).sort(); // Sort by time slots
-  let consecutiveCount = 0;
-  let maxConsecutive = 0;
-
-  // Count consecutive time slots
-  for (let i = 1; i < timeSlots.length; i++) {
-    if (timeSlots[i] === timeSlots[i - 1] + 1) {
-      consecutiveCount++;
-    } else {
-      maxConsecutive = Math.max(maxConsecutive, consecutiveCount);
-      consecutiveCount = 0; // Reset if not consecutive
-    }
-  }
-  return Math.max(maxConsecutive, consecutiveCount); // Return the highest consecutive count
-}
-
-// Generate provisional routine based on available teachers
-function generateProvisionalRoutine() {
-  document.getElementById("loader-overlay").style.display = "flex";
-  setTimeout(() => {
-    document.getElementById("loader-overlay").style.display = "none";
-  }, 5000);
-
-  const day = document.getElementById("daySelect").value;
-  const provisionalTable = document.getElementById("provisionalTable");
-  provisionalTable.innerHTML = "";
-
-  if (day && scheduleData[day]) {
-    replacementTeachers = availableTeachers.filter(teacher => !absentTeachers.includes(teacher));
-
-    // Create a map to track the number of classes for each replacement teacher
-    let teacherClassCount = {};
-    replacementTeachers.forEach((teacher) => {
-      teacherClassCount[teacher] = 0;
-    });
-
-    // Count classes for each available teacher
-    scheduleData[day].forEach((entry) => {
-      if (replacementTeachers.includes(entry.teacher)) {
-        teacherClassCount[entry.teacher]++;
-      }
-    });
-
-    // Generate the provisional routine for absent teachers
-    scheduleData[day].forEach((entry) => {
-      if (absentTeachers.includes(entry.teacher)) {
-        // Get the subject and time slot of the absent teacher
-        const absentTeacherSubject = entry.subject;
-        const timeSlot = entry.timeSlot;
-
-        // Find available teachers who teach the same subject and are free during this time slot
-        let subjectTeachers = replacementTeachers.filter(teacher => {
-          const isSameSubject = scheduleData[day].some(e => e.teacher === teacher && e.subject === absentTeacherSubject);
-          const isFreeAtTimeSlot = !scheduleData[day].some(e => e.teacher === teacher && e.timeSlot === timeSlot);
-          return isSameSubject && isFreeAtTimeSlot;
-        });
-
-        // Sort same-subject teachers by the number of classes
-        subjectTeachers.sort((a, b) => {
-          if (teacherClassCount[a] === teacherClassCount[b]) {
-            // Break tie by fewer consecutive classes
-            const aConsecutive = countConsecutiveClasses(a, day);
-            const bConsecutive = countConsecutiveClasses(b, day);
-            return aConsecutive - bConsecutive;
-          }
-          return teacherClassCount[a] - teacherClassCount[b];
-        });
-
-        // If no same-subject teachers are available, fallback to any available teacher
-        if (subjectTeachers.length === 0) {
-          subjectTeachers = replacementTeachers.filter(teacher => {
-            // Check if the teacher is free during the time slot
-            return !scheduleData[day].some(e => e.teacher === teacher && e.timeSlot === timeSlot);
+            teacherList.innerHTML += checkbox;
           });
+        } else {
+          teacherList.innerHTML = "<p>No teachers available</p>";
         }
+      }
 
-        // Sort fallback teachers by the number of classes
-        subjectTeachers.sort((a, b) => {
-          if (teacherClassCount[a] === teacherClassCount[b]) {
-            // Break tie by fewer consecutive classes
-            const aConsecutive = countConsecutiveClasses(a, day);
-            const bConsecutive = countConsecutiveClasses(b, day);
-            return aConsecutive - bConsecutive;
+      // Update the list of absent teachers based on selected checkboxes
+      function updateAbsentTeachers() {
+        absentTeachers = Array.from(document.querySelectorAll('#teacherList input:checked')).map(input => input.value);
+      }
+
+      // Generate provisional routine based on available teachers
+      // Generate provisional routine based on available teachers
+      // Helper function to count consecutive classes for a teacher
+      function countConsecutiveClasses(teacher, day) {
+        let teacherClasses = scheduleData[day].filter(entry => entry.teacher === teacher);
+        let timeSlots = teacherClasses.map(entry => entry.timeSlot).sort(); // Sort by time slots
+        let consecutiveCount = 0;
+        let maxConsecutive = 0;
+
+        // Count consecutive time slots
+        for (let i = 1; i < timeSlots.length; i++) {
+          if (timeSlots[i] === timeSlots[i - 1] + 1) {
+            consecutiveCount++;
+          } else {
+            maxConsecutive = Math.max(maxConsecutive, consecutiveCount);
+            consecutiveCount = 0; // Reset if not consecutive
           }
-          return teacherClassCount[a] - teacherClassCount[b];
-        });
-
-        let replacementTeacher = subjectTeachers.shift(); // Get the teacher with the least number of classes or least consecutive classes
-
-        if (replacementTeacher) {
-          teacherClassCount[replacementTeacher]++;
-          replacementTeachers.push(replacementTeacher);
-          replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
         }
+        return Math.max(maxConsecutive, consecutiveCount); // Return the highest consecutive count
+      }
 
-        let row = `<tr>
+      // Generate provisional routine based on available teachers
+      // Helper function to count consecutive classes for a teacher
+      function countConsecutiveClasses(teacher, day) {
+        let teacherClasses = scheduleData[day].filter(entry => entry.teacher === teacher);
+        let timeSlots = teacherClasses.map(entry => entry.timeSlot).sort(); // Sort by time slots
+        let consecutiveCount = 0;
+        let maxConsecutive = 0;
+
+        // Count consecutive time slots
+        for (let i = 1; i < timeSlots.length; i++) {
+          if (timeSlots[i] === timeSlots[i - 1] + 1) {
+            consecutiveCount++;
+          } else {
+            maxConsecutive = Math.max(maxConsecutive, consecutiveCount);
+            consecutiveCount = 0; // Reset if not consecutive
+          }
+        }
+        return Math.max(maxConsecutive, consecutiveCount); // Return the highest consecutive count
+      }
+
+      // Generate provisional routine based on available teachers
+      function generateProvisionalRoutine() {
+        document.getElementById("loader-overlay").style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("loader-overlay").style.display = "none";
+        }, 5000);
+
+        const day = document.getElementById("daySelect").value;
+        const provisionalTable = document.getElementById("provisionalTable");
+        provisionalTable.innerHTML = "";
+
+        if (day && scheduleData[day]) {
+          replacementTeachers = availableTeachers.filter(teacher => !absentTeachers.includes(teacher));
+
+          // Create a map to track the number of classes for each replacement teacher
+          let teacherClassCount = {};
+          replacementTeachers.forEach((teacher) => {
+            teacherClassCount[teacher] = 0;
+          });
+
+          // Count classes for each available teacher
+          scheduleData[day].forEach((entry) => {
+            if (replacementTeachers.includes(entry.teacher)) {
+              teacherClassCount[entry.teacher]++;
+            }
+          });
+
+          // Generate the provisional routine for absent teachers
+          scheduleData[day].forEach((entry) => {
+            if (absentTeachers.includes(entry.teacher)) {
+              // Get the subject and time slot of the absent teacher
+              const absentTeacherSubject = entry.subject;
+              const timeSlot = entry.timeSlot;
+
+              // Find available teachers who teach the same subject and are free during this time slot
+              let subjectTeachers = replacementTeachers.filter(teacher => {
+                const isSameSubject = scheduleData[day].some(e => e.teacher === teacher && e.subject === absentTeacherSubject);
+                const isFreeAtTimeSlot = !scheduleData[day].some(e => e.teacher === teacher && e.timeSlot === timeSlot);
+                return isSameSubject && isFreeAtTimeSlot;
+              });
+
+              // Sort same-subject teachers by the number of classes
+              subjectTeachers.sort((a, b) => {
+                if (teacherClassCount[a] === teacherClassCount[b]) {
+                  // Break tie by fewer consecutive classes
+                  const aConsecutive = countConsecutiveClasses(a, day);
+                  const bConsecutive = countConsecutiveClasses(b, day);
+                  return aConsecutive - bConsecutive;
+                }
+                return teacherClassCount[a] - teacherClassCount[b];
+              });
+
+              // If no same-subject teachers are available, fallback to any available teacher
+              if (subjectTeachers.length === 0) {
+                subjectTeachers = replacementTeachers.filter(teacher => {
+                  // Check if the teacher is free during the time slot
+                  return !scheduleData[day].some(e => e.teacher === teacher && e.timeSlot === timeSlot);
+                });
+              }
+
+              // Sort fallback teachers by the number of classes
+              subjectTeachers.sort((a, b) => {
+                if (teacherClassCount[a] === teacherClassCount[b]) {
+                  // Break tie by fewer consecutive classes
+                  const aConsecutive = countConsecutiveClasses(a, day);
+                  const bConsecutive = countConsecutiveClasses(b, day);
+                  return aConsecutive - bConsecutive;
+                }
+                return teacherClassCount[a] - teacherClassCount[b];
+              });
+
+              let replacementTeacher = subjectTeachers.shift(); // Get the teacher with the least number of classes or least consecutive classes
+
+              if (replacementTeacher) {
+                teacherClassCount[replacementTeacher]++;
+                replacementTeachers.push(replacementTeacher);
+                replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
+              }
+
+              let row = `<tr>
           <td>${entry.class}</td>
           <td>${entry.section}</td>
           <td>${entry.teacher}</td>
           <td>${replacementTeacher || "N/A"}</td>
           <td>${entry.timeSlot}</td>
         </tr>`;
-        provisionalTable.innerHTML += row;
-      }
-    });
+              provisionalTable.innerHTML += row;
+            }
+          });
 
-    document.getElementById("provisionalRoutineSection").style.display = "block";
-  } else {
-    document.getElementById("provisionalRoutineSection").style.display = "none";
-  }
-}
-
-
-
-  </script> 
-
-
-
-
-
-
-  <script>
-    async function fetchSchedule() {
-      try {
-        // Fetch the schedule JSON file
-        const response = await fetch('schedule.json');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+          document.getElementById("provisionalRoutineSection").style.display = "block";
+        } else {
+          document.getElementById("provisionalRoutineSection").style.display = "none";
         }
-        const schedule = await response.json();
+      }
 
-        // Function to create and display the table
-        function displaySchedule(day) {
-          const container = document.getElementById('schedule-container');
-          let tableHtml = '<h2 style="font-sixe:20px;font-weight:400px;">Regular Schedule</h2>'; // Add heading
 
-          tableHtml += '<table>';
 
-          // Create table headers
-          tableHtml += '<thead><tr><th>Day</th><th>Class</th><th>Section</th><th>Subject</th><th>Teacher</th><th>Time Slot</th></tr></thead><tbody>';
+    </script>
 
-          // Display schedule for the selected day
-          if (schedule.schedule[day]) {
-            schedule.schedule[day].forEach(entry => {
-              tableHtml += `<tr><td>${day}</td><td>${entry.class}</td><td>${entry.section}</td><td>${entry.subject}</td><td>${entry.teacher}</td><td>${entry.timeSlot}</td></tr>`;
-            });
-          } else {
-            tableHtml += '<tr><td colspan="6">No schedule available for the selected day</td></tr>';
+
+
+
+
+
+    <script>
+      async function fetchSchedule() {
+        try {
+          // Fetch the schedule JSON file
+          const response = await fetch('schedule.json');
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const schedule = await response.json();
+
+          // Function to create and display the table
+          function displaySchedule(day) {
+            const container = document.getElementById('schedule-container');
+            let tableHtml = '<h2 style="font-sixe:20px;font-weight:400px;">Regular Schedule</h2>'; // Add heading
+
+            tableHtml += '<table>';
+
+            // Create table headers
+            tableHtml += '<thead><tr><th>Day</th><th>Class</th><th>Section</th><th>Subject</th><th>Teacher</th><th>Time Slot</th></tr></thead><tbody>';
+
+            // Display schedule for the selected day
+            if (schedule.schedule[day]) {
+              schedule.schedule[day].forEach(entry => {
+                tableHtml += `<tr><td>${day}</td><td>${entry.class}</td><td>${entry.section}</td><td>${entry.subject}</td><td>${entry.teacher}</td><td>${entry.timeSlot}</td></tr>`;
+              });
+            } else {
+              tableHtml += '<tr><td colspan="6">No schedule available for the selected day</td></tr>';
+            }
+
+            tableHtml += '</tbody></table>';
+            container.innerHTML = tableHtml;
           }
 
-          tableHtml += '</tbody></table>';
-          container.innerHTML = tableHtml;
+
+          // Load schedule for the selected day
+          document.getElementById('daySelect').addEventListener('change', function () {
+            const selectedDay = this.value;
+            displaySchedule(selectedDay);
+          });
+
+          // Initial display based on the default selected day
+          const initialDay = document.getElementById('daySelect').value;
+          if (initialDay) {
+            displaySchedule(initialDay);
+          }
+
+        } catch (error) {
+          console.error('Error fetching schedule:', error);
         }
-
-
-        // Load schedule for the selected day
-        document.getElementById('daySelect').addEventListener('change', function () {
-          const selectedDay = this.value;
-          displaySchedule(selectedDay);
-        });
-
-        // Initial display based on the default selected day
-        const initialDay = document.getElementById('daySelect').value;
-        if (initialDay) {
-          displaySchedule(initialDay);
-        }
-
-      } catch (error) {
-        console.error('Error fetching schedule:', error);
       }
-    }
 
-    // Fetch and display the schedule on page load
-    fetchSchedule();
-  </script>
+      // Fetch and display the schedule on page load
+      fetchSchedule();
+    </script>
 
-  <!-- Loader HTML -->
-  <div id="loader-overlay" class="loader-overlay">
-    <div class="loader"></div>
-    <br>
-    <div class="loader-text">Generating
-      <span class="dots">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </span>
+    <!-- Loader HTML -->
+    <div id="loader-overlay" class="loader-overlay">
+      <div class="loader"></div>
+      <br>
+      <div class="loader-text">Generating
+        <span class="dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </span>
+      </div>
+      <style>
+        .dots {
+          display: inline-block;
+          position: relative;
+        }
+
+        .dot {
+          display: inline-block;
+          width: 8px;
+          /* Adjust as needed */
+          height: 8px;
+          /* Adjust as needed */
+          background-color: #000;
+          /* Adjust color as needed */
+          border-radius: 50%;
+          margin: 0 2px;
+          /* Adjust spacing between dots */
+          animation: dot-blink 1.5s infinite both;
+        }
+
+        .dot:nth-child(2) {
+          animation-delay: 0.6s;
+        }
+
+        .dot:nth-child(3) {
+          animation-delay: 1s;
+        }
+
+        @keyframes dot-blink {
+
+          0%,
+          100% {
+            opacity: 0;
+          }
+
+          50% {
+            opacity: 1;
+          }
+        }
+      </style>
     </div>
-    <style>
-      .dots {
-        display: inline-block;
-        position: relative;
-      }
-
-      .dot {
-        display: inline-block;
-        width: 8px;
-        /* Adjust as needed */
-        height: 8px;
-        /* Adjust as needed */
-        background-color: #000;
-        /* Adjust color as needed */
-        border-radius: 50%;
-        margin: 0 2px;
-        /* Adjust spacing between dots */
-        animation: dot-blink 1.5s infinite both;
-      }
-
-      .dot:nth-child(2) {
-        animation-delay: 0.6s;
-      }
-
-      .dot:nth-child(3) {
-        animation-delay: 1s;
-      }
-
-      @keyframes dot-blink {
-
-        0%,
-        100% {
-          opacity: 0;
-        }
-
-        50% {
-          opacity: 1;
-        }
-      }
-    </style>
-  </div>
 
 </body>
 
