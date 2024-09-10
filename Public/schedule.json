@@ -5,7 +5,7 @@
       { "class": "Grade 5", "section": "A", "subject": "Math", "teacher": "G.M", "timeSlot": "9:00 - 9:45" },
       { "class": "Grade 5", "section": "A", "subject": "Biology", "teacher": "M.S", "timeSlot": "10:00 - 10:45" },
       { "class": "Grade 5", "section": "A", "subject": "Geography", "teacher": "G.B", "timeSlot": "11:00 - 11:45" },
-      { "class": "Grade 5", "section": "B", "subject": "Math", "teacher": "S.B", "timeSlot": "9:00 - 9:45" },
+      { "class": "Grade 5", "section": "B", "subject": "Math", "teacher": "J.M", "timeSlot": "9:00 - 9:45" },
       { "class": "Grade 5", "section": "B", "subject": "Biology", "teacher": "M.S", "timeSlot": "10:00 - 10:45" },
       { "class": "Grade 5", "section": "B", "subject": "Geography", "teacher": "G.B", "timeSlot": "11:00 - 11:45" },
 
@@ -48,7 +48,7 @@
       { "class": "Grade 7", "section": "A", "subject": "English", "teacher": "M.K.H", "timeSlot": "11:00 - 11:45" },
       { "class": "Grade 7", "section": "B", "subject": "Physics", "teacher": "UM", "timeSlot": "9:00 - 9:45" },
       { "class": "Grade 7", "section": "B", "subject": "Biology", "teacher": "A.B", "timeSlot": "10:00 - 10:45" },
-      { "class": "Grade 7", "section": "B", "subject": "English", "teacher": "S.D", "timeSlot": "11:00 - 11:45" }
+      { "class": "Grade 7", "section": "B", "subject": "English", "teacher": "P.M", "timeSlot": "11:00 - 11:45" }
     ],
     "Wednesday": [
 

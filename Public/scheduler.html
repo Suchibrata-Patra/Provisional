@@ -456,64 +456,114 @@
     }
 
     // Generate provisional routine based on available teachers
-    function generateProvisionalRoutine() {
-      document.getElementById("loader-overlay").style.display = "flex";
-      setTimeout(() => {
-        document.getElementById("loader-overlay").style.display = "none";
+   // Generate provisional routine based on available teachers
+// Helper function to count consecutive classes for a teacher
+function countConsecutiveClasses(teacher, day) {
+  let teacherClasses = scheduleData[day].filter(entry => entry.teacher === teacher);
+  let timeSlots = teacherClasses.map(entry => entry.timeSlot).sort(); // Sort by time slots
+  let consecutiveCount = 0;
+  let maxConsecutive = 0;
 
-        // Continue with the routine generation logic here
-        // Your existing routine generation code should go here
-      }, 5000);
-      const day = document.getElementById("daySelect").value;
-      const provisionalTable = document.getElementById("provisionalTable");
-      provisionalTable.innerHTML = "";
-
-      if (day && scheduleData[day]) {
-        replacementTeachers = availableTeachers.filter(teacher => !absentTeachers.includes(teacher));
-
-        // Create a map to track the number of classes for each replacement teacher
-        let teacherClassCount = {};
-        replacementTeachers.forEach((teacher) => {
-          teacherClassCount[teacher] = 0;
-        });
-
-        // Count classes for each available teacher
-        scheduleData[day].forEach((entry) => {
-          if (replacementTeachers.includes(entry.teacher)) {
-            teacherClassCount[entry.teacher]++;
-          }
-        });
-
-        // Sort teachers by the number of classes
-        replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
-
-        // Generate the provisional routine for absent teachers
-        scheduleData[day].forEach((entry) => {
-          if (absentTeachers.includes(entry.teacher)) {
-            let replacementTeacher = replacementTeachers.shift(); // Get the teacher with the least number of classes
-
-            // Add the replacement teacher back and re-sort
-            if (replacementTeacher) {
-              replacementTeachers.push(replacementTeacher);
-              replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
-            }
-
-            let row = `<tr>
-              <td>${entry.class}</td>
-              <td>${entry.section}</td>
-              <td>${entry.teacher}</td>
-              <td>${replacementTeacher || "N/A"}</td>
-              <td>${entry.timeSlot}</td>
-            </tr>`;
-            provisionalTable.innerHTML += row;
-          }
-        });
-
-        document.getElementById("provisionalRoutineSection").style.display = "block";
-      } else {
-        document.getElementById("provisionalRoutineSection").style.display = "none";
-      }
+  // Count consecutive time slots
+  for (let i = 1; i < timeSlots.length; i++) {
+    if (timeSlots[i] === timeSlots[i - 1] + 1) {
+      consecutiveCount++;
+    } else {
+      maxConsecutive = Math.max(maxConsecutive, consecutiveCount);
+      consecutiveCount = 0; // Reset if not consecutive
     }
+  }
+  return Math.max(maxConsecutive, consecutiveCount); // Return the highest consecutive count
+}
+
+// Generate provisional routine based on available teachers
+function generateProvisionalRoutine() {
+  document.getElementById("loader-overlay").style.display = "flex";
+  setTimeout(() => {
+    document.getElementById("loader-overlay").style.display = "none";
+  }, 5000);
+
+  const day = document.getElementById("daySelect").value;
+  const provisionalTable = document.getElementById("provisionalTable");
+  provisionalTable.innerHTML = "";
+
+  if (day && scheduleData[day]) {
+    replacementTeachers = availableTeachers.filter(teacher => !absentTeachers.includes(teacher));
+
+    // Create a map to track the number of classes for each replacement teacher
+    let teacherClassCount = {};
+    replacementTeachers.forEach((teacher) => {
+      teacherClassCount[teacher] = 0;
+    });
+
+    // Count classes for each available teacher
+    scheduleData[day].forEach((entry) => {
+      if (replacementTeachers.includes(entry.teacher)) {
+        teacherClassCount[entry.teacher]++;
+      }
+    });
+
+    // Sort teachers by the number of classes
+    replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
+
+    // Generate the provisional routine for absent teachers
+    scheduleData[day].forEach((entry) => {
+      if (absentTeachers.includes(entry.teacher)) {
+        // Get the subject and time slot of the absent teacher
+        const absentTeacherSubject = entry.subject;
+        const timeSlot = entry.timeSlot;
+
+        // Find available teachers who teach the same subject and are free during this time slot
+        let subjectTeachers = replacementTeachers.filter(teacher => {
+          const isSameSubject = scheduleData[day].some(e => e.teacher === teacher && e.subject === absentTeacherSubject);
+          const isFreeAtTimeSlot = !scheduleData[day].some(e => e.teacher === teacher && e.timeSlot === timeSlot);
+          return isSameSubject && isFreeAtTimeSlot;
+        });
+
+        // Sort same-subject teachers by the number of classes
+        subjectTeachers.sort((a, b) => {
+          if (teacherClassCount[a] === teacherClassCount[b]) {
+            // Break tie by fewer consecutive classes
+            const aConsecutive = countConsecutiveClasses(a, day);
+            const bConsecutive = countConsecutiveClasses(b, day);
+            return aConsecutive - bConsecutive;
+          }
+          return teacherClassCount[a] - teacherClassCount[b];
+        });
+
+        // Fallback to any available teacher if no subject teacher is free
+        if (subjectTeachers.length === 0) {
+          subjectTeachers = replacementTeachers.filter(teacher => {
+            return !scheduleData[day].some(e => e.teacher === teacher && e.timeSlot === timeSlot);
+          });
+        }
+
+        let replacementTeacher = subjectTeachers.shift(); // Get the teacher with the least number of classes or least consecutive classes
+
+        if (replacementTeacher) {
+          teacherClassCount[replacementTeacher]++;
+          replacementTeachers.push(replacementTeacher);
+          replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
+        }
+
+        let row = `<tr>
+          <td>${entry.class}</td>
+          <td>${entry.section}</td>
+          <td>${entry.teacher}</td>
+          <td>${replacementTeacher || "N/A"}</td>
+          <td>${entry.timeSlot}</td>
+        </tr>`;
+        provisionalTable.innerHTML += row;
+      }
+    });
+
+    document.getElementById("provisionalRoutineSection").style.display = "block";
+  } else {
+    document.getElementById("provisionalRoutineSection").style.display = "none";
+  }
+}
+
+
   </script> 
 
 
