@@ -477,6 +477,26 @@ function countConsecutiveClasses(teacher, day) {
 }
 
 // Generate provisional routine based on available teachers
+// Helper function to count consecutive classes for a teacher
+function countConsecutiveClasses(teacher, day) {
+  let teacherClasses = scheduleData[day].filter(entry => entry.teacher === teacher);
+  let timeSlots = teacherClasses.map(entry => entry.timeSlot).sort(); // Sort by time slots
+  let consecutiveCount = 0;
+  let maxConsecutive = 0;
+
+  // Count consecutive time slots
+  for (let i = 1; i < timeSlots.length; i++) {
+    if (timeSlots[i] === timeSlots[i - 1] + 1) {
+      consecutiveCount++;
+    } else {
+      maxConsecutive = Math.max(maxConsecutive, consecutiveCount);
+      consecutiveCount = 0; // Reset if not consecutive
+    }
+  }
+  return Math.max(maxConsecutive, consecutiveCount); // Return the highest consecutive count
+}
+
+// Generate provisional routine based on available teachers
 function generateProvisionalRoutine() {
   document.getElementById("loader-overlay").style.display = "flex";
   setTimeout(() => {
@@ -503,9 +523,6 @@ function generateProvisionalRoutine() {
       }
     });
 
-    // Sort teachers by the number of classes
-    replacementTeachers.sort((a, b) => teacherClassCount[a] - teacherClassCount[b]);
-
     // Generate the provisional routine for absent teachers
     scheduleData[day].forEach((entry) => {
       if (absentTeachers.includes(entry.teacher)) {
@@ -531,12 +548,24 @@ function generateProvisionalRoutine() {
           return teacherClassCount[a] - teacherClassCount[b];
         });
 
-        // Fallback to any available teacher if no subject teacher is free
+        // If no same-subject teachers are available, fallback to any available teacher
         if (subjectTeachers.length === 0) {
           subjectTeachers = replacementTeachers.filter(teacher => {
+            // Check if the teacher is free during the time slot
             return !scheduleData[day].some(e => e.teacher === teacher && e.timeSlot === timeSlot);
           });
         }
+
+        // Sort fallback teachers by the number of classes
+        subjectTeachers.sort((a, b) => {
+          if (teacherClassCount[a] === teacherClassCount[b]) {
+            // Break tie by fewer consecutive classes
+            const aConsecutive = countConsecutiveClasses(a, day);
+            const bConsecutive = countConsecutiveClasses(b, day);
+            return aConsecutive - bConsecutive;
+          }
+          return teacherClassCount[a] - teacherClassCount[b];
+        });
 
         let replacementTeacher = subjectTeachers.shift(); // Get the teacher with the least number of classes or least consecutive classes
 
@@ -562,6 +591,7 @@ function generateProvisionalRoutine() {
     document.getElementById("provisionalRoutineSection").style.display = "none";
   }
 }
+
 
 
   </script> 

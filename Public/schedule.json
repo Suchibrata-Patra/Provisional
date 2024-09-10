@@ -2,10 +2,10 @@
   "schedule": {
     "Monday": [
 
-      { "class": "Grade 5", "section": "A", "subject": "Math", "teacher": "G.M", "timeSlot": "9:00 - 9:45" },
+      { "class": "Grade 5", "section": "A", "subject": "Mathematics", "teacher": "G.M", "timeSlot": "9:00 - 9:45" },
       { "class": "Grade 5", "section": "A", "subject": "Biology", "teacher": "M.S", "timeSlot": "10:00 - 10:45" },
       { "class": "Grade 5", "section": "A", "subject": "Geography", "teacher": "G.B", "timeSlot": "11:00 - 11:45" },
-      { "class": "Grade 5", "section": "B", "subject": "Math", "teacher": "J.M", "timeSlot": "9:00 - 9:45" },
+      { "class": "Grade 5", "section": "B", "subject": "Mathematics", "teacher": "J.M", "timeSlot": "9:00 - 9:45" },
       { "class": "Grade 5", "section": "B", "subject": "Biology", "teacher": "M.S", "timeSlot": "10:00 - 10:45" },
       { "class": "Grade 5", "section": "B", "subject": "Geography", "teacher": "G.B", "timeSlot": "11:00 - 11:45" },
 
@@ -27,10 +27,10 @@
     ],
     "Tuesday": [
 
-      { "class": "Grade 5", "section": "A", "subject": "Math", "teacher": "G.M", "timeSlot": "9:00 - 9:45" },
+      { "class": "Grade 5", "section": "A", "subject": "Mathematics", "teacher": "G.M", "timeSlot": "9:00 - 9:45" },
       { "class": "Grade 5", "section": "A", "subject": "Biology", "teacher": "M.S", "timeSlot": "10:00 - 10:45" },
       { "class": "Grade 5", "section": "A", "subject": "Geography", "teacher": "G.B", "timeSlot": "11:00 - 11:45" },
-      { "class": "Grade 5", "section": "B", "subject": "Math", "teacher": "G.M", "timeSlot": "9:00 - 9:45" },
+      { "class": "Grade 5", "section": "B", "subject": "Mathematics", "teacher": "G.M", "timeSlot": "9:00 - 9:45" },
       { "class": "Grade 5", "section": "B", "subject": "Biology", "teacher": "M.S", "timeSlot": "10:00 - 10:45" },
       { "class": "Grade 5", "section": "B", "subject": "Geography", "teacher": "G.B", "timeSlot": "11:00 - 11:45" },
 
