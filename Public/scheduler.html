@@ -5,6 +5,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+const today = new Date();
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = today.toLocaleDateString(undefined, options);
+document.title = `${formattedDate}`;
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString(undefined, options); // Format the current date
+    
+    // Use innerHTML to insert HTML content
+    document.getElementById('currentDate').innerHTML = `Date : <p style="border:1.5px solid Grey;border-radius:5px;padding:4px 5px;display:inline;">${formattedDate}</p>`;
+});
+
+
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
   </style>
@@ -259,9 +278,10 @@
 
 <body>
   <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
-    <label for="daySelect" style="margin-right: 10px;font-weight: 400;font-size:18px;">Choose the Day</label>
+    <span id="currentDate" style="margin-left: 20px; font-size: 14px; font-weight: 400;"></span>
+    <label for="daySelect" style="margin-right: 10px; font-weight: 400; font-size: 14px;margin-left: 20px;">Choose the Day</label>
     <select id="daySelect" onchange="loadSchedule()" style="border-radius: 5px;">
-      <option value=""> Select</option>
+      <option value="">Select</option>
       <option value="Monday">Monday</option>
       <option value="Tuesday">Tuesday</option>
       <option value="Wednesday">Wednesday</option>
@@ -269,9 +289,10 @@
       <option value="Friday">Friday</option>
       <option value="Saturday">Saturday</option>
       <option value="Sunday" disabled>Sunday</option>
-
     </select>
-  </div>
+    <!-- Adding the current date here -->
+</div>
+
 
 
   <div id="teacherSelectionSection" style="display: none">
@@ -288,12 +309,20 @@
       <!-- Add more checkboxes and labels as needed -->
     </div>
 
-    <button onclick="generateProvisionalRoutine()">Generate Routine</button>
+    <button onclick="generateProvisionalRoutine()">Generate Routine </button>
   </div>
 
   <div id="provisionalRoutineSection" style="display: none;">
-    <h2>Provisional Routine</h2>
-    <button class="print-button" onclick="printSection()">Print</button>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px;">
+      <h2 style="margin: 0;">Provisional Routine</h2>
+      <button class="print-button" onclick="printSection()" style="display: inline-flex; align-items: center; padding: 10px 20px; background-color: #007AFF; color: rgb(255, 255, 255); border: none; border-radius:50px;">
+          <span class="material-symbols-outlined" style="margin-right: 5px; font-size: 20px;">
+              print
+          </span> 
+          Print
+      </button>
+  </div>
+    
 
     <table>
         <thead>
@@ -431,7 +460,7 @@
 
         // Continue with the routine generation logic here
         // Your existing routine generation code should go here
-      }, 5000);
+      }, 100);
       const day = document.getElementById("daySelect").value;
       const provisionalTable = document.getElementById("provisionalTable");
       provisionalTable.innerHTML = "";
@@ -497,7 +526,7 @@
         // Function to create and display the table
         function displaySchedule(day) {
     const container = document.getElementById('schedule-container');
-    let tableHtml = '<h2>Daily Schedule</h2>'; // Add heading
+    let tableHtml = '<h2 style="font-sixe:20px;font-weight:400px;">Regular Schedule</h2>'; // Add heading
 
     tableHtml += '<table>';
 

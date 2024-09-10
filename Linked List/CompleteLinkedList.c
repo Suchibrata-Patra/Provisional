@@ -12,10 +12,8 @@ void add_after_value(int num,int data);
 void del_begin();
 void del_node(int pos);
 void del_value(int data);
-void del_
-
-
-
+void insert_value(int data);
+void insert
 
  async function fetchSchedule() {
       try {
