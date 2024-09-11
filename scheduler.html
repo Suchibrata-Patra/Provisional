@@ -333,7 +333,7 @@
     <!-- Container for Haggle and Help Button -->
     <div style="display: flex; align-items: center; gap: 10px;">
       <!-- Icon Text -->
-      <div style="font-size: 24px; font-weight: 600; color: #000000;"">Resch.</div>
+      <div style="font-size: 24px; font-weight: 600; color: #000000;"">Pracma</div>
       
       <!-- Help Button -->
       <button style=" background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer;
@@ -499,7 +499,7 @@
 
       // Fetch the schedule data
       function fetchScheduleData() {
-        fetch("rkm.json")
+        fetch("schedule.json")
           .then((response) => response.json())
           .then((data) => {
             scheduleData = data.schedule;
@@ -745,7 +745,7 @@
       async function fetchSchedule() {
         try {
           // Fetch the schedule JSON file
-          const response = await fetch('rkm.json');
+          const response = await fetch('schedule.json');
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
