@@ -7,7 +7,7 @@
 
       // Fetch the schedule data
       function fetchScheduleData() {
-        fetch("schedule.json")
+        fetch("final.json")
           .then((response) => response.json())
           .then((data) => {
             scheduleData = data.schedule;
