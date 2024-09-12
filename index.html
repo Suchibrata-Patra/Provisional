@@ -26,32 +26,37 @@
       background-repeat: no-repeat;
       font-family: "Inconsolata", monospace;
       background-color: rgb(218, 218, 218);
-      color: #000000; /* Darker text color for better readability */
-      margin: 0; /* Remove default body margin */
+      color: #000000;
+      /* Darker text color for better readability */
+      margin: 0;
+      /* Remove default body margin */
     }
 
     .container {
       margin-top: 5%;
-      padding-right:25%;
-      padding-left:3%;
+      padding-right: 25%;
+      padding-left: 3%;
       /* Adjusted for better spacing */
     }
-    
+
     h3 {
       font-weight: 700;
       font-size: 30px;
       text-align: left;
       margin-top: 2rem;
-      color: #000000; /* Darker color for headings */
+      color: #000000;
+      /* Darker color for headings */
     }
 
     ul {
       font-size: 1.25rem;
-      color: #495057; /* Slightly lighter grey for text */
+      color: #495057;
+      /* Slightly lighter grey for text */
       text-align: left;
       margin-left: -20px;
       padding-right: 5%;
-      line-height: 1.3em; /* Increased line height for readability */
+      line-height: 1.3em;
+      /* Increased line height for readability */
     }
 
     .btn-custom {
@@ -66,9 +71,11 @@
     }
 
     .btn-custom:hover {
-  background-color: #242424; /* Slightly lighter black on hover */
-  transform: scale(1.02); /* Zoom effect */
-}
+      background-color: #242424;
+      /* Slightly lighter black on hover */
+      transform: scale(1.02);
+      /* Zoom effect */
+    }
 
 
     .footer {
@@ -77,8 +84,10 @@
       width: 100%;
       text-align: center;
       color: grey;
-      font-size: 0.9rem; /* Slightly smaller font size for the footer */
-      padding: 0 10px; /* Added padding for small screens */
+      font-size: 0.9rem;
+      /* Slightly smaller font size for the footer */
+      padding: 0 10px;
+      /* Added padding for small screens */
     }
 
     /* Media Queries for responsiveness */
@@ -117,13 +126,15 @@
 
       .footer {
         font-size: 0.85rem;
-        padding: 0 5px; /* Reduced padding for very small screens */
+        padding: 0 5px;
+        /* Reduced padding for very small screens */
       }
     }
 
     @media (max-width: 576px) {
       body {
-        font-size: 0.85rem; /* Slightly smaller base font size */
+        font-size: 0.85rem;
+        /* Slightly smaller base font size */
       }
 
       h3 {
@@ -142,14 +153,15 @@
 
       .footer {
         font-size: 0.75rem;
-        padding: 0 5px; /* Further reduced padding for very small screens */
+        padding: 0 5px;
+        /* Further reduced padding for very small screens */
       }
     }
   </style>
 </head>
 
 <body>
- 
+
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-8">
@@ -159,14 +171,14 @@
           <li>Absent teachers are identified and removed from the list of available teachers.</li>
           <li>The algorithm tries to find replacement teachers who teach the same subject as the absent teacher.</li>
           <li>If no same-subject teacher is available, it looks for any other free teacher.</li>
-          <li>Teachers are ranked based on the number of classes they have for the day and the number of consecutive classes.</li>
+          <li>Teachers are ranked based on the number of classes they have for the day and the number of consecutive
+            classes.</li>
           <li>If a teacher has fewer classes and fewer consecutive time slots, they are prioritized.</li>
           <li>Replacement teachers are assigned based on availability, subject match, and class count.</li>
         </ul>
-        
+
         <a href="scheduler.html" style="text-decoration: none;">
-          <button
-            class="btn-custom"
+          <button class="btn-custom"
             style="display: flex; align-items: center; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; transform-origin: center;"
             onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
             Go
@@ -179,7 +191,8 @@
     </div>
   </div>
   <p style="padding-left: 20%;padding-right: 20%;color: black;font-size:20px;padding-top: 20%;">
-    "Use the technology to dish your washes and iron your cloths so that you can do the art and drawings.Let not technology do the art and drawings so that you could wash the dishes."
+    "Use the technology to dish your washes and iron your cloths so that you can do the art and drawings.Let not
+    technology do the art and drawings so that you could wash the dishes."
   </p>
 
   <div class="footer">
