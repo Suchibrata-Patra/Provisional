@@ -7,66 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="Asset/CSS/style.css">
+  <link rel="stylesheet" href="Asset/CSS/popup.css">
   <script src="Asset/JS/fetcher.js"></script>
   <script src="Asset/JS/scheduler.js"></script>
   <script src="Asset/JS/date_detector.js"></script>
-  <style>
-    /* Centered Popup Styles */
-    #preferencesOverlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      /* Ensure it’s above other content */
-    }
-
-    #preferencesSection {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transform: scale(0.9);
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      position: relative;
-      /* Position relative for absolute positioning of the close button */
-    }
-
-    #preferencesSection.show {
-      transform: scale(1);
-      opacity: 1;
-    }
-
-    .close-button {
-      background-color: #ff3b30;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 20px;
-      height: 28px;
-      font-size: 18px;
-      cursor: pointer;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      /* Use flexbox to center the content */
-      align-items: center;
-      /* Vertically center the icon */
-      justify-content: center;
-      /* Horizontally center the icon */
-    }
-  </style>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -101,8 +45,10 @@
     <!-- Container for Haggle and Help Button -->
     <div style="display: flex; align-items: center; gap: 10px;">
       <!-- Icon Text -->
-      <div style="font-size: 30px; font-weight: 700; color: #000000;"">Timora.</div>
-      
+      <a href="index.html" style="font-size: 30px; font-weight: 700; color: #000000; text-decoration: none;">
+        Timora.
+    </a>
+          
       <!-- Help Button -->
       <button style=" background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer;
         display: inline-flex; align-items: center; padding: 4px 8px;" id="navoptions"
@@ -168,28 +114,41 @@
     </div>
 
     <div id="teacherSelectionSection" style="display: none; padding:2%;">
-      <h3 style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0;">
-        <span class="material-symbols-outlined" style="margin-right: 8px;">
-          select_check_box
-        </span>
-        Check all Absent Teachers
-      </h3>
-      <button id="preferencesButton" onclick="togglePreferences()"
-        style="display: inline-flex; align-items: center; background-color: #cacaca; color: white;border: 1px solid black; padding: 10px 15px; border: none; border-radius: 50px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">
-        Preferences
-        <span class="material-symbols-outlined" style="font-size: 20px; margin-left: 8px;">settings</span>
-      </button>
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0;">
+          <span class="material-symbols-outlined" style="margin-right: 8px;">
+            select_check_box
+          </span>
+          Check all Absent Teachers
+        </h3>
+      
+        <button id="preferencesButton" onclick="togglePreferences()"
+          style="display: inline-flex; align-items: center; justify-content: center; background-color: #cacaca; color: white; border: 1px solid black; padding: 10px 15px; border: none; border-radius: 50px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">
+          Preferences
+          <span class="material-symbols-outlined" style="font-size: 20px; margin-left: 8px; line-height: 1;">settings</span>
+        </button>
+      </div>
+      
 
-
+     
+     
       <!-- Preferences Overlay -->
       <div id="preferencesOverlay">
         <div id="preferencesSection">
-          <button class="close-button" onclick="togglePreferences()">×</button>
-          <label><input type="checkbox" id="stopClass12" /> Stop Class 12 Classes of Absent Teacher</label><br>
-          <label><input type="checkbox" id="reallocateTeachers" /> Reallocate Other Teachers</label><br>
-          <button onclick="applyPreferences()">Apply Preferences</button>
+          <h5 style="color: rgb(112, 112, 112);font-weight: 300;font-size: 15px;">These Following features are unser development. Wait for next Version to use these features.</h5>
+          <label><input type="checkbox" id="stopClass12" style="margin-right: 5px;" /> Stop Class 12
+            Practical.</label><br>
+          <label><input type="checkbox" id="minimizeOffPeriod" style="margin-right: 5px;" /> Try to minimize off
+            Period</label><br>
+          <label><input type="checkbox" id="rescheduleClasses" style="margin-right: 5px;" /> Can reschedule regular
+            Classes</label><br>
+          <label><input type="checkbox" id="recordForModel" style="margin-right: 5px;" /> Record for model
+            improvements.</label><br>
+          <button class="save-button" onclick="savePreferences()">Save</button>
         </div>
       </div>
+
+
 
 
       <div style="color: orange;font-size: 14px;padding-left: 3px;">*Numbers in Orange Denotes the Number of Classes the
@@ -260,11 +219,13 @@
         printSection.style.display = originalDisplay; // Hide it again after printing
       }
     </script>
-
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const overlay = document.getElementById("preferencesOverlay");
         overlay.style.display = "none"; // Hide the overlay initially
+
+        // Load saved preferences from localStorage if they exist
+        loadPreferences();
       });
 
       function togglePreferences() {
@@ -284,34 +245,16 @@
         }
       }
 
-
-      // Function to apply selected preferences
-      function applyPreferences() {
-        const stopClass12 = document.getElementById("stopClass12").checked;
-        const reallocateTeachers = document.getElementById("reallocateTeachers").checked;
-
-        if (stopClass12) {
-          stopClass12Classes();
-        }
-
-        if (reallocateTeachers) {
-          reallocateOtherTeachers();
-        }
+      function savePreferences() {
+        // Simply hide the overlay
+        togglePreferences();
       }
 
-      // Function to stop class 12 classes of absent teachers
-      function stopClass12Classes() {
-        // Your existing logic to stop class 12 classes
-        console.log("Stopping Class 12 classes of absent teachers");
-      }
-
-      // Function to reallocate other teachers
-      function reallocateOtherTeachers() {
-        // Your existing logic to reallocate other teachers
-        console.log("Reallocating other teachers");
-      }
 
     </script>
+
+
+
     <div id="schedule-container" style="padding: 2%;">
       <!-- <h3>Weekly Schedule</h3> -->
 
