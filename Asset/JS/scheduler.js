@@ -150,8 +150,6 @@ function countConsecutiveClasses(teacher, day) {
 
 
 
-
-// Generate provisional routine based on available teachers
 function generateProvisionalRoutine() {
   document.getElementById("loader-overlay").style.display = "flex";
   setTimeout(() => {
@@ -180,12 +178,34 @@ function generateProvisionalRoutine() {
       }
     });
 
+    // Helper function to check consecutive classes
+    function getConsecutiveClasses(entries, index) {
+      const classLevel = entries[index].class;
+      const section = entries[index].section;
+      let consecutiveClasses = [entries[index]];
+
+      // Check if next classes are consecutive
+      for (let i = index + 1; i < entries.length; i++) {
+        if (entries[i].class === classLevel && entries[i].section === section) {
+          if (entries[i].timeSlot === entries[i - 1].timeSlot + 1) {
+            consecutiveClasses.push(entries[i]);
+          } else {
+            break;
+          }
+        }
+      }
+      return consecutiveClasses;
+    }
+
     // Generate the provisional routine for absent teachers
-    scheduleData[day].forEach((entry) => {
+    scheduleData[day].forEach((entry, index) => {
       if (absentTeachers.includes(entry.teacher)) {
         const absentTeacherSubject = entry.subject;
         const timeSlot = entry.timeSlot;
-        const classLevel = entry.class; // Class level like "Class 11" or "Class 12"
+        const classLevel = entry.class;
+
+        // Get all consecutive classes for the absent teacher
+        const consecutiveClasses = getConsecutiveClasses(scheduleData[day], index);
 
         let subjectTeachers = replacementTeachers.filter((teacher) => {
           const isSameSubject = scheduleData[day].some(
@@ -197,68 +217,80 @@ function generateProvisionalRoutine() {
           return isSameSubject && isFreeAtTimeSlot;
         });
 
-        // If the class is Class 11 or Class 12, only allow same-subject teachers
-        if (classLevel === "Grade 11" || classLevel === "Grade 12") {
-          if (subjectTeachers.length === 0) {
-            // No same-subject teacher available, mark as "Off Period"
+        // If no same-subject teacher is available for Class 11/12, mark as Off Period
+        if ((classLevel === "Grade 11" || classLevel === "Grade 12") && subjectTeachers.length === 0) {
+          consecutiveClasses.forEach((classEntry) => {
             let row = `<tr>
-              <td>${entry.class}</td>
-              <td>${entry.section}</td>
-              <td>${entry.teacher}</td>
+              <td>${classEntry.class}</td>
+              <td>${classEntry.section}</td>
+              <td>${classEntry.teacher}</td>
               <td>Off Period</td>
-              <td>${entry.timeSlot}</td>
+              <td>${classEntry.timeSlot}</td>
             </tr>`;
             provisionalTable.innerHTML += row;
-            return; // Skip to the next iteration
-          }
+          });
+          return; // Skip to the next iteration
+        }
+
+        // Check if all consecutive classes can be allocated to a single teacher
+        let fullAllocationPossible = subjectTeachers.some((teacher) => {
+          return consecutiveClasses.every((classEntry) => {
+            return !scheduleData[day].some(
+              (e) => e.teacher === teacher && e.timeSlot === classEntry.timeSlot
+            );
+          });
+        });
+
+        if (fullAllocationPossible) {
+          // Allocate one teacher for all consecutive classes
+          let replacementTeacher = subjectTeachers.shift();
+          consecutiveClasses.forEach((classEntry) => {
+            teacherClassCount[replacementTeacher]++;
+            let row = `<tr>
+              <td>${classEntry.class}</td>
+              <td>${classEntry.section}</td>
+              <td>${classEntry.teacher}</td>
+              <td>${replacementTeacher || "N/A"}</td>
+              <td>${classEntry.timeSlot}</td>
+            </tr>`;
+            provisionalTable.innerHTML += row;
+          });
         } else {
-          // For other classes, fallback to any available teacher if no same-subject teachers are available
-          if (subjectTeachers.length === 0) {
-            subjectTeachers = replacementTeachers.filter((teacher) => {
+          // Allocate partially or mark as Off Period
+          consecutiveClasses.forEach((classEntry, i) => {
+            let replacementTeacher = subjectTeachers.find((teacher) => {
               return !scheduleData[day].some(
-                (e) => e.teacher === teacher && e.timeSlot === timeSlot
+                (e) => e.teacher === teacher && e.timeSlot === classEntry.timeSlot
               );
             });
-          }
+            
+            if (replacementTeacher && i === 0) {
+              teacherClassCount[replacementTeacher]++;
+              let row = `<tr>
+                <td>${classEntry.class}</td>
+                <td>${classEntry.section}</td>
+                <td>${classEntry.teacher}</td>
+                <td>${replacementTeacher}</td>
+                <td>${classEntry.timeSlot}</td>
+              </tr>`;
+              provisionalTable.innerHTML += row;
+            } else {
+              // Mark as "Off Period" for the rest of consecutive classes
+              let row = `<tr>
+                <td>${classEntry.class}</td>
+                <td>${classEntry.section}</td>
+                <td>${classEntry.teacher}</td>
+                <td>Off Period</td>
+                <td>${classEntry.timeSlot}</td>
+              </tr>`;
+              provisionalTable.innerHTML += row;
+            }
+          });
         }
-
-        // Filter out teachers who are already scheduled for another class at the same time slot
-        subjectTeachers = subjectTeachers.filter((teacher) => {
-          return !scheduleData[day].some(
-            (e) => e.teacher === teacher && e.timeSlot === timeSlot
-          );
-        });
-
-        // Sort same-subject and fallback teachers by the number of classes and consecutive classes
-        subjectTeachers.sort((a, b) => {
-          if (teacherClassCount[a] === teacherClassCount[b]) {
-            const aConsecutive = countConsecutiveClasses(a, day);
-            const bConsecutive = countConsecutiveClasses(b, day);
-            return aConsecutive - bConsecutive;
-          }
-          return teacherClassCount[a] - teacherClassCount[b];
-        });
-
-        // Get the teacher with the least number of classes or least consecutive classes
-        let replacementTeacher = subjectTeachers.shift();
-
-        if (replacementTeacher) {
-          teacherClassCount[replacementTeacher]++;
-        }
-
-        let row = `<tr>
-          <td>${entry.class}</td>
-          <td>${entry.section}</td>
-          <td>${entry.teacher}</td>
-          <td>${replacementTeacher || "N/A"}</td>
-          <td>${entry.timeSlot}</td>
-        </tr>`;
-        provisionalTable.innerHTML += row;
       }
     });
 
-    document.getElementById("provisionalRoutineSection").style.display =
-      "block";
+    document.getElementById("provisionalRoutineSection").style.display = "block";
   } else {
     document.getElementById("provisionalRoutineSection").style.display = "none";
   }
