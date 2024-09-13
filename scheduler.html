@@ -30,7 +30,16 @@
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
   </style>
 
-
+<style>
+  @keyframes rotate {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+</style>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -45,10 +54,8 @@
     <!-- Container for Haggle and Help Button -->
     <div style="display: flex; align-items: center; gap: 10px;">
       <!-- Icon Text -->
-      <a href="index.html" style="font-size: 30px; font-weight: 700; color: #000000; text-decoration: none;">
-        Timora.
-    </a>
-          
+      <div style="font-size: 30px; font-weight: 700; color: #000000;"">Timora.</div>
+      
       <!-- Help Button -->
       <button style=" background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer;
         display: inline-flex; align-items: center; padding: 4px 8px;" id="navoptions"
@@ -114,39 +121,58 @@
     </div>
 
     <div id="teacherSelectionSection" style="display: none; padding:2%;">
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <h3 style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0;">
+      <div style="display: flex; align-items: center;">
+        <h3 style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0; margin-right: 20px;">
           <span class="material-symbols-outlined" style="margin-right: 8px;">
             select_check_box
           </span>
           Check all Absent Teachers
         </h3>
-      
         <button id="preferencesButton" onclick="togglePreferences()"
-          style="display: inline-flex; align-items: center; justify-content: center; background-color: #cacaca; color: white; border: 1px solid black; padding: 10px 15px; border: none; border-radius: 50px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">
+          style="display: inline-flex; align-items: center; background-color: #ffffff; color: rgb(212, 212, 212); border: 1px solid rgb(190, 190, 190); padding: 10px 15px; border-radius: 50px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">
           Preferences
-          <span class="material-symbols-outlined" style="font-size: 20px; margin-left: 8px; line-height: 1;">settings</span>
+          <span class="material-symbols-outlined" style="font-size: 20px; margin-left: 8px;">settings</span>
         </button>
       </div>
       
 
-     
-     
-      <!-- Preferences Overlay -->
-      <div id="preferencesOverlay">
-        <div id="preferencesSection">
-          <h5 style="color: rgb(112, 112, 112);font-weight: 300;font-size: 15px;">These Following features are unser development. Wait for next Version to use these features.</h5>
-          <label><input type="checkbox" id="stopClass12" style="margin-right: 5px;" /> Stop Class 12
-            Practical.</label><br>
-          <label><input type="checkbox" id="minimizeOffPeriod" style="margin-right: 5px;" /> Try to minimize off
-            Period</label><br>
-          <label><input type="checkbox" id="rescheduleClasses" style="margin-right: 5px;" /> Can reschedule regular
-            Classes</label><br>
-          <label><input type="checkbox" id="recordForModel" style="margin-right: 5px;" /> Record for model
-            improvements.</label><br>
-          <button class="save-button" onclick="savePreferences()">Save</button>
-        </div>
-      </div>
+
+<!-- Preferences Overlay -->
+<div id="preferencesOverlay" style="padding-right: 10px;">
+  <div id="preferencesSection">
+    <center>
+      <h3 style="font-size: 20px; padding: -5px; display: flex; justify-content: center; align-items: center;">
+        <span class="material-symbols-outlined" style="font-size: 50px; display: inline-block; animation: rotate 10s linear infinite;color: rgb(179, 179, 185);">
+          settings_backup_restore</span>
+      </h3>
+    </center>
+    
+        <p style="color: rgb(194, 194, 194);font-weight:100px; font-size: larger;">These features are currently under development; please stay tuned for their availability in the next update.</p>
+    <label>
+      <input type="checkbox" id="stopClass12" />
+      <span class="checkbox-label">Stop H.S Practical.</span>
+    </label><br>
+    <label>
+      <input type="checkbox" id="reallocateTeachers" />
+      <span class="checkbox-label">Minimize off Period</span>
+    </label><br>
+    <label>
+      <input type="checkbox" id="reallocateTeachers2" /checked>
+      <span class="checkbox-label">Teachers can take leave during the day.</span>
+    </label><br>
+    <label>
+      <input type="checkbox" id="reallocateTeachers3" /checked2>
+      <span class="checkbox-label">Record for model improvements.</span>
+    </label><br>
+    <button class="save-button" onclick="savePreferences()">
+      Okay
+    </button>
+
+
+    
+  </div>
+</div>
+
 
 
 
@@ -221,34 +247,34 @@
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        const overlay = document.getElementById("preferencesOverlay");
-        overlay.style.display = "none"; // Hide the overlay initially
+    const overlay = document.getElementById("preferencesOverlay");
+    overlay.style.display = "none"; // Hide the overlay initially
 
-        // Load saved preferences from localStorage if they exist
-        loadPreferences();
-      });
+    // Load saved preferences from localStorage if they exist
+    loadPreferences();
+});
 
-      function togglePreferences() {
-        const overlay = document.getElementById("preferencesOverlay");
-        const preferencesSection = document.getElementById("preferencesSection");
+function togglePreferences() {
+    const overlay = document.getElementById("preferencesOverlay");
+    const preferencesSection = document.getElementById("preferencesSection");
 
-        if (overlay.style.display === "flex") {
-          preferencesSection.classList.remove("show");
-          setTimeout(() => {
+    if (overlay.style.display === "flex") {
+        preferencesSection.classList.remove("show");
+        setTimeout(() => {
             overlay.style.display = "none";
-          }, 300); // Match the duration of the transition
-        } else {
-          overlay.style.display = "flex";
-          setTimeout(() => {
+        }, 300); // Match the duration of the transition
+    } else {
+        overlay.style.display = "flex";
+        setTimeout(() => {
             preferencesSection.classList.add("show");
-          }, 10); // Delay to allow display to apply
-        }
-      }
+        }, 10); // Delay to allow display to apply
+    }
+}
 
-      function savePreferences() {
-        // Simply hide the overlay
-        togglePreferences();
-      }
+function savePreferences() {
+    // Simply hide the overlay
+    togglePreferences();
+}
 
 
     </script>
