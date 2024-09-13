@@ -148,8 +148,6 @@ function countConsecutiveClasses(teacher, day) {
 }
 
 
-
-
 function generateProvisionalRoutine() {
   document.getElementById("loader-overlay").style.display = "flex";
   setTimeout(() => {
@@ -161,7 +159,7 @@ function generateProvisionalRoutine() {
   provisionalTable.innerHTML = "";
 
   if (day && scheduleData[day]) {
-    replacementTeachers = availableTeachers.filter(
+    let replacementTeachers = availableTeachers.filter(
       (teacher) => !absentTeachers.includes(teacher)
     );
 
@@ -217,19 +215,21 @@ function generateProvisionalRoutine() {
           return isSameSubject && isFreeAtTimeSlot;
         });
 
-        // If no same-subject teacher is available for Class 11/12, mark as Off Period
-        if ((classLevel === "Grade 11" || classLevel === "Grade 12") && subjectTeachers.length === 0) {
-          consecutiveClasses.forEach((classEntry) => {
-            let row = `<tr>
-              <td>${classEntry.class}</td>
-              <td>${classEntry.section}</td>
-              <td>${classEntry.teacher}</td>
-              <td>Off Period</td>
-              <td>${classEntry.timeSlot}</td>
-            </tr>`;
-            provisionalTable.innerHTML += row;
-          });
-          return; // Skip to the next iteration
+        if (classLevel === "Grade 11" || classLevel === "Grade 12") {
+          // If no same-subject teacher is available for Grade 11/12, mark as Off Period
+          if (subjectTeachers.length === 0) {
+            consecutiveClasses.forEach((classEntry) => {
+              let row = `<tr>
+                <td>${classEntry.class}</td>
+                <td>${classEntry.section}</td>
+                <td>${classEntry.teacher}</td>
+                <td>Off Period</td>
+                <td>${classEntry.timeSlot}</td>
+              </tr>`;
+              provisionalTable.innerHTML += row;
+            });
+            return; // Skip to the next iteration
+          }
         }
 
         // Check if all consecutive classes can be allocated to a single teacher
@@ -256,7 +256,7 @@ function generateProvisionalRoutine() {
             provisionalTable.innerHTML += row;
           });
         } else {
-          // Allocate partially or mark as Off Period
+          // Allocate partially or mark as Off Period for Grade 11/12
           consecutiveClasses.forEach((classEntry, i) => {
             let replacementTeacher = subjectTeachers.find((teacher) => {
               return !scheduleData[day].some(
@@ -274,8 +274,8 @@ function generateProvisionalRoutine() {
                 <td>${classEntry.timeSlot}</td>
               </tr>`;
               provisionalTable.innerHTML += row;
-            } else {
-              // Mark as "Off Period" for the rest of consecutive classes
+            } else if (classLevel === "Grade 11" || classLevel === "Grade 12") {
+              // Mark as "Off Period" for the rest of consecutive classes in Grade 11/12
               let row = `<tr>
                 <td>${classEntry.class}</td>
                 <td>${classEntry.section}</td>
