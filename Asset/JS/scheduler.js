@@ -146,6 +146,15 @@ function countConsecutiveClasses(teacher, day) {
   }
   return Math.max(maxConsecutive, consecutiveCount); // Return the highest consecutive count
 }
+// Open the modal
+document.getElementById("preferencesButton").onclick = function() {
+  document.getElementById("preferencesModal").style.display = "block";
+}
+
+// Close the modal
+document.querySelector(".close").onclick = function() {
+  document.getElementById("preferencesModal").style.display = "none";
+}
 
 
 function generateProvisionalRoutine() {

@@ -10,7 +10,28 @@
   <script src="Asset/JS/fetcher.js"></script>
   <script src="Asset/JS/scheduler.js"></script>
   <script src="Asset/JS/date_detector.js"></script>
-
+  <style>
+    #preferencesSection {
+      display: none;
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    #preferencesSection input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    #preferencesButton {
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const today = new Date();
@@ -117,6 +138,13 @@
         </span>
         Check all Absent Teachers
       </h3>
+      <button id="preferencesButton" onclick="togglePreferences()">Preferences</button>
+  
+  <div id="preferencesSection">
+    <label><input type="checkbox" id="stopClass12" /> Stop Class 12 Classes of Absent Teacher</label><br>
+    <label><input type="checkbox" id="reallocateTeachers" /> Reallocate Other Teachers</label><br>
+    <button onclick="applyPreferences()">Apply Preferences</button>
+  </div>
       <div style="color: orange;font-size: 14px;padding-left: 3px;">*Numbers in Orange Denotes the Number of Classes the
         teacher have already in the Schedule.</div>
       <div id="teacherList">
@@ -186,6 +214,39 @@
       }
     </script>
 
+<script>
+  // Function to toggle the preferences section visibility
+  function togglePreferences() {
+    const preferencesSection = document.getElementById("preferencesSection");
+    preferencesSection.style.display = preferencesSection.style.display === "none" ? "block" : "none";
+  }
+
+  // Function to apply selected preferences
+  function applyPreferences() {
+    const stopClass12 = document.getElementById("stopClass12").checked;
+    const reallocateTeachers = document.getElementById("reallocateTeachers").checked;
+
+    if (stopClass12) {
+      stopClass12Classes();
+    }
+
+    if (reallocateTeachers) {
+      reallocateOtherTeachers();
+    }
+  }
+
+  // Function to stop class 12 classes of absent teachers
+  function stopClass12Classes() {
+    // Your existing logic to stop class 12 classes
+    console.log("Stopping Class 12 classes of absent teachers");
+  }
+
+  // Function to reallocate other teachers
+  function reallocateOtherTeachers() {
+    // Your existing logic to reallocate other teachers
+    console.log("Reallocating other teachers");
+  }
+</script>
     <div id="schedule-container" style="padding: 2%;">
       <!-- <h3>Weekly Schedule</h3> -->
 
