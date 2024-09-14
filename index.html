@@ -162,46 +162,85 @@
 
 <body>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-lg-8">
-        <h3>Rescheduling Mechanism</h3>
-        <ul>
-          <li>The algorithm first checks the list of available teachers for the selected day.</li>
-          <li>Absent teachers are identified and removed from the list of available teachers.</li>
-          <li>The algorithm tries to find replacement teachers who teach the same subject as the absent teacher.</li>
-          <li>If no same-subject teacher is available, it looks for any other free teacher.</li>
-          <li>Teachers are ranked based on the number of classes they have for the day and the number of consecutive
-            classes.</li>
-          <li>If a teacher has fewer classes and fewer consecutive time slots, they are prioritized.</li>
-          <li>Replacement teachers are assigned based on availability, subject match, and class count.</li>
-        </ul>
+  <!-- Navbar -->
+  <div
+    style="display: flex; align-items: center; justify-content: space-between; width: 100vw; height: 60px;color: #000000; padding: 0 30px; box-sizing: border-box;">
+    <!-- Container for Haggle and Help Button -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <!-- Icon Text -->
+      <div style="font-size: 30px; font-weight: 700; color: #000000;"">Timora.</div>
+    
+    <!-- Help Button -->
+    <button style=" background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer;
+        display: inline-flex; align-items: center; padding: 4px 8px;" id="navoptions"
+        onclick="window.location.href='Help.html';">
+        Help
+        </button>
 
-        <a href="scheduler.html" style="text-decoration: none;">
-          <button class="btn-custom"
-            style="display: flex; align-items: center; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; transform-origin: center;"
-            onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
-            Go
-            <span class="material-symbols-outlined" style="font-size: 1.25rem; margin-left: 8px;">
-              arrow_right_alt
-            </span>
-          </button>
-        </a>
+
+        <!-- Edit Schedule -->
+        <button
+          style="background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; padding: 4px;"
+          id="navoptions" onclick="window.location.href='edit.html';">
+          Edit Schedule
+        </button>
+      </div>
+
+      <!-- Report Error Button -->
+      <button
+        style="background-color: #000000; color: #ffffff; border: none; border-radius: 20px; padding: 10px 15px; font-size: 12px; cursor: pointer; font-weight: 500; margin-right: 10%; display: flex; align-items: center;"
+        onclick="window.location.href='error_report.html';">
+        Report Error
+        <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 8px; font-weight: 600;">
+          error
+        </span>
+      </button>
+    </div>
+
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <h3>Rescheduling Mechanism</h3>
+          <ul>
+            <li>The algorithm first checks the list of available teachers for the selected day.</li>
+            <li>Absent teachers are identified and removed from the list of available teachers.</li>
+            <li>The algorithm tries to find replacement teachers who teach the same subject as the absent teacher.</li>
+            <li>If no same-subject teacher is available, it looks for any other free teacher.</li>
+            <li>Teachers are ranked based on the number of classes they have for the day and the number of consecutive
+              classes.</li>
+            <li>If a teacher has fewer classes and fewer consecutive time slots, they are prioritized.</li>
+            <li>Replacement teachers are assigned based on availability, subject match, and class count.</li>
+          </ul>
+
+          <a href="scheduler.html" style="text-decoration: none;">
+            <button class="btn-custom"
+              style="display: flex; align-items: center; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; transform-origin: center;"
+              onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+              Go
+              <span class="material-symbols-outlined" style="font-size: 1.25rem; margin-left: 8px;">
+                arrow_right_alt
+              </span>
+            </button>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-  <p style="padding-left:4%;padding-right: 20%;color: black;font-size:20px;padding-top:2%;padding-bottom:3%;max-width: 950px;">
-    "Use the technology to dish your washes and iron your cloths so that you can do the art and drawings.Let not
-    technology do the art and drawings so that you could wash the dishes.
-  </p>
+    <p
+      style="padding-left:4%;padding-right: 20%;color: black;font-size:20px;padding-top:2%;padding-bottom:3%;max-width: 950px;">
+      "Use the technology to dish your washes and iron your cloths so that you can do the art and drawings.Let not
+      technology do the art and drawings so that you could wash the dishes.
+    </p>
 
-  <div class="footer">
-    <b>Version :</b> <u>Beta - 1.0</u> Future releases will bring further improvements and stability.
-  </div>
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+    <div class="footer">
+      <b>Version :</b> <u>Beta - 1.0</u> Future releases will bring further improvements and stability.
+    </div>
+    <script>
+      window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 
 </html>
