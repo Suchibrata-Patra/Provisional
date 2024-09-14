@@ -253,6 +253,42 @@
         padding: 10px;
       }
     }
+    /* Ensure nav-options is hidden on mobile by default */
+.nav-options {
+  display: flex;
+}
+
+/* Show nav-options when the menu is toggled */
+.nav-options.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px; /* Adjust as needed */
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  padding: 10px;
+}
+
+.burger-icon {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .navbar .nav-options {
+    display: flex;
+  }
+
+  .navbar .burger-icon {
+    display: none;
+  }
+
+  .nav-options.mobile-menu {
+    display: none;
+  }
+}
+
   </style>
 </head>
 
@@ -265,24 +301,24 @@
       Timora.
     </div>
 
-    <!-- Burger Icon (visible on mobile) -->
-    <div class="burger-icon" onclick="toggleMenu()">☰</div>
+<!-- Burger Icon (visible on mobile) -->
+<div class="burger-icon" onclick="toggleMenu()">☰</div>
 
-    <!-- Container for buttons (hidden on mobile) -->
-    <div class="nav-options">
-      <!-- Help Button -->
-      <button onclick="window.location.href='Help.html';">Help</button>
+<!-- Container for buttons (hidden on mobile) -->
+<div class="nav-options">
+  <!-- Help Button -->
+  <button onclick="window.location.href='Help.html';">Help</button>
 
-      <!-- Edit Schedule Button -->
-      <button onclick="window.location.href='edit.html';">Edit Schedule</button>
+  <!-- Edit Schedule Button -->
+  <button onclick="window.location.href='edit.html';">Edit Schedule</button>
 
-      <!-- Report Error Button -->
-      <button class="btn-report-error" onclick="window.location.href='error_report.html';">
-        Report Error
-        <span class="material-symbols-outlined">error</span>
-      </button>
-    </div>
-  </div>
+  <!-- Report Error Button -->
+  <button class="btn-report-error" onclick="window.location.href='error_report.html';">
+    Report Error
+    <span class="material-symbols-outlined">error</span>
+  </button>
+</div>
+
 
   <!-- Main Landing Page Heading -->
   <div class="main-heading" >
@@ -337,10 +373,11 @@
 
 
   <script>
-    function toggleMenu() {
-      var navOptions = document.querySelector('.nav-options');
-      navOptions.style.display = navOptions.style.display === 'block' ? 'none' : 'block';
-    }
+   function toggleMenu() {
+  var navOptions = document.querySelector('.nav-options');
+  navOptions.classList.toggle('mobile-menu');
+}
+
   </script>
 </body>
 
