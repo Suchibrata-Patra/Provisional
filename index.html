@@ -524,17 +524,21 @@
       }
 
       .card {
-        display: inline-block;
-        width: 300px;
-        height: 200px;
-        margin-right: 10px;
-      }
+  display: inline-block;
+  width: 300px;
+  height: 200px;
+  margin-right: 10px;
+  background-color: none;
+  box-sizing: border-box; /* Ensures padding and border are included in width and height */
+  overflow: hidden; /* Prevents overflow if content is larger than the card */
+}
 
-      .card img {
-        width: 300px;
-        height: 200px;
-        border-radius: 10px;
-      }
+.card img {
+  width: 100%; /* Ensures the image scales to fit the card's width */
+  height: 100%; /* Ensures the image scales to fit the card's height */
+  object-fit: cover; /* Ensures the image covers the card, cropping if necessary */
+  border-radius: 10px;
+}
 
       @keyframes scroll {
         0% {
