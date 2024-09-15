@@ -341,6 +341,24 @@
     .search-button:hover {
       background-color: #0056b3;
     }
+    .logo {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    padding-left: 5%;
+}
+
+.logo-img {
+    height: 45px; /* Adjust the height as needed */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+.logo-text {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make text bold for emphasis */
+    color: #333; /* Text color */
+    /* Add additional styling as needed */
+}
+
   </style>
 </head>
 
@@ -348,10 +366,12 @@
 
   <!-- Navbar -->
   <div class="navbar">
-    <!-- Logo Text -->
-    <div class="logo" style="padding-left:5%;">
-      Timora.
-    </div>
+<!-- Logo Text -->
+<div class="logo">
+  <img src="timora.png" alt="Timora logo" class="logo-img">
+  <span class="logo-text">Timora.</span>
+</div>
+
 
     <!-- Burger Icon (visible on mobile) -->
     <div class="burger-icon" onclick="toggleMenu()">☰</div>

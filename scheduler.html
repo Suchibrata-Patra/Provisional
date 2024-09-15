@@ -39,6 +39,19 @@
       transform: rotate(0deg);
     }
   }
+
+
+  .logo-img {
+    height: 45px; /* Adjust the height as needed */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+.logo-text {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make text bold for emphasis */
+    color: #333; /* Text color */
+    /* Add additional styling as needed */
+}
 </style>
 
 
@@ -54,8 +67,11 @@
     <!-- Container for Haggle and Help Button -->
     <div style="display: flex; align-items: center; gap: 10px;">
       <!-- Icon Text -->
-      <div style="font-size: 30px; font-weight: 700; color: #000000;"">Timora.</div>
-      
+<!-- Logo Text -->
+<div class="logo">
+  <img src="timora.png" alt="Timora logo" class="logo-img">
+  <span class="logo-text">Timora.</span>
+</div>      
       <!-- Help Button -->
       <button style=" background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer;
         display: inline-flex; align-items: center; padding: 4px 8px;" id="navoptions"
