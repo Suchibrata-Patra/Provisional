@@ -25,6 +25,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@300&display=swap" rel="stylesheet">
+
+
   <title>Provisional</title>
   <style>
     body {
@@ -239,7 +242,7 @@
       }
 
       .main-heading {
-        height: 55vh;
+        height: 70vh;
 
       }
 
@@ -425,27 +428,94 @@
       <button onclick="window.location.href='#';">Refer</button>
       <button onclick="window.location.href='#';">Help</button>
       <!-- Edit Schedule Button -->
-      <button onclick="window.location.href='edit.html';">Edit Schedule</button>
+      <button onclick="window.location.href='edit.html';">Inst. List</button>
+      <!-- Edit Schedule Button -->
+      <button onclick="window.location.href='edit.html';">Why Open Source ?</button>
+
 
       <input type="search" id="searchBar" class="search-input" placeholder="Search..." style="font-weight: 200;">
       <!-- Report Error Button -->
       <button class="btn-report-error" onclick="window.location.href='error_report.html';">
-        Report Error
+        Register
         <!-- <span class="material-symbols-outlined">error</span> -->
       </button>
     </div>
 
 
+
+
+
     <!-- Main Landing Page Heading -->
     <div class="main-heading">
       <div>
-        <h1>Best Class Rescheduling Software</h1>
-        <h3 style="color: #0d0c22;font-family:'Courier New', Courier, monospace;line-height: 18px / 32px;">Say yes 👋🏻
-          to Timora, to ease your day to day rescheduling works
-          of your School.</h3>
+        <button class="color-changing-button"> Trusted by 100+ Schools</button> <br>
+        <style>
+          @keyframes colorChange {
+            0% {
+              background-color: #d7c6ee;
+            }
+
+            25% {
+              background-color: #fae296;
+            }
+
+            50% {
+              background-color: #f1eec4;
+            }
+
+            75% {
+              background-color: #dfd7e6;
+            }
+
+            100% {
+              background-color: #ffade3;
+            }
+          }
+
+          .color-changing-button {
+            font-family: "Roboto", sans-serif;
+            background-color: pink;
+            /* Initial color */
+            border-radius: 50px;
+            padding: 4px 20px;
+            margin-top: 20px;
+            border: none;
+            color: rgb(0, 0, 0);
+            /* Optional: Adjust text color for better contrast */
+            font-size: 16px;
+            /* Optional: Adjust font size */
+            animation: colorChange 60s infinite;
+            /* Apply the animation */
+          }
+        </style>
+        <!-- <h1>Best <span style="color: red;margin-bottom: -30px;">free</span> Rescheduling Software</h1> -->
+
+        <!-- Include the Google Font in the head of your document -->
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
+
+        <!-- Apply the handwritten font in the inline CSS -->
+        <h1 style="position: relative; display: inline-block;">
+          Best
+          <span style="
+    color: red; 
+    position: absolute; 
+    top: 10px; /* Adjust the vertical position */
+    font-size: 30px;
+    font-weight: 300;
+    font-family: 'Dancing Script', cursive; /* Handwritten font */
+    transform: rotate(-20deg); /* No rotation */
+    transform-origin: left bottom; /* Adjust origin of rotation */
+  ">free </span>
+          <span style="padding-left:32px;">Class Rescheduling Software</span>
+        </h1>
 
 
-        <a href="scheduler.html" style="text-decoration: none;"><button class="btn-custom" style="margin-top: 30px;">Get
+
+        <h3 style="color: #0d0c22;font-family:'Courier New', Courier, monospace;line-height: 18px / 32px;">Say 👋🏻
+          to Timora, to ease your day to day rescheduling works of your School.</h3>
+
+
+        <a href="scheduler.html" style="text-decoration: none;"><button class="btn-custom" style="margin-top: 30px;margin-bottom:10px;">Get
             Started</button></a>
       </div>
     </div>
@@ -458,53 +528,116 @@
           <img
             src="https://images.unsplash.com/photo-1719339837856-bcff37200a01?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mnx8fGVufDB8fHx8fA%3D%3D"
             alt="Image 1">
+          <div class="card-text">
+            Precision Design
+            <br>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UI</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UX</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              Design</button>
+          </div>
         </div>
         <div class="card">
           <img
             src="https://images.unsplash.com/photo-1721332154191-ba5f1534266e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
             alt="Image 2">
+          <div class="card-text">
+            Precision Design
+            <br>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UI</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UX</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              Design</button>
+          </div>
         </div>
         <div class="card">
           <img
             src="https://images.unsplash.com/photo-1723877896976-2526130e50c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDh8MjFhcGMzVFVFVm98fGVufDB8fHx8fA%3D%3D"
             alt="Image 3">
+          <div class="card-text">
+            Precision Design
+            <br>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UI</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UX</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              Design</button>
+          </div>
         </div>
         <div class="card">
           <img
             src="https://images.unsplash.com/photo-1606355555437-59e0b3f0a703?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXJ0aXN0fGVufDB8fDB8fHww"
             alt="Image 4">
+          <div class="card-text">
+            Precision Design
+            <br>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UI</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              UX</button>
+            <button
+              style="background:none;border: 1px solid white;color: rgb(245, 245, 245);border-radius: 50px;padding: 1px 15px;">
+              Design</button>
+          </div>
         </div>
         <div class="card">
           <img
             src="https://images.unsplash.com/photo-1597310502621-f807d2fca611?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D"
             alt="Image 5">
+          <div class="card-text">Image 2 Description</div>
+
         </div>
         <!-- Duplicated Content for seamless loop -->
         <div class="card">
           <img
             src="https://plus.unsplash.com/premium_photo-1672287578699-618ea6dbcc9e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D"
             alt="Image 1">
+          <div class="card-text">Image 2 Description</div>
+
         </div>
         <div class="card">
           <img
             src="https://plus.unsplash.com/premium_photo-1674815483030-efd14e5e774b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D"
             alt="Image 2">
+          <div class="card-text">Image 2 Description</div>
+
         </div>
         <div class="card">
           <img
             src="https://images.unsplash.com/photo-1608402515433-d43f0fc28812?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D"
             alt="Image 3">
+          <div class="card-text">Image 2 Description</div>
+
         </div>
         <div class="card">
           <img
             src="https://images.unsplash.com/photo-1610493471707-14e3fb1db20e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D"
             alt="Image 4">
-            Image
+          <div class="card-text">Image 2 Description</div>
+
         </div>
         <div class="card">
           <img
             src="https://images.unsplash.com/photo-1610131559347-9b8d99534507?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODN8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D"
             alt="Image 5">
+          <div class="card-text">Image 2 Description</div>
+
         </div>
       </div>
     </div>
@@ -521,7 +654,7 @@
 
       .scrolling-content {
         display: flex;
-        animation: scroll 50s linear infinite;
+        animation: scroll 25s linear infinite;
       }
 
       .card {
@@ -531,28 +664,59 @@
         margin-right: 10px;
         box-sizing: border-box;
         overflow: hidden;
-        border-radius:13px;
+        padding: 0;
+        border-radius: 15px;
       }
+
 
       .card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 0px;
+        shape-outside: none;
+        box-shadow: inset 0 -100px 100px rgba(0, 0, 0, 1);
+        /* Darker inner shadow at the bottom */
       }
+
+      .card-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 45px;
+        background: linear-gradient(to bottom,
+            /* Gradient direction */
+            rgba(0, 0, 0, 0) 0%,
+            /* Transparent at the top */
+            rgba(0, 0, 0) 100%
+            /* Darker at the bottom */
+          );
+        color: white;
+        font-size: 16px;
+        text-align: center;
+      }
+
 
       /* Media query for larger screens (desktops) */
       @media (min-width: 768px) {
         .card {
-          width: 400px;
+          width: 260px;
           /* Increase width on desktop */
-          height: 450px;
+          height: 400px;
           /* Increase height on desktop */
+          border-radius: 20px;
+          margin-right: 10px;
         }
 
         .card img {
           width: 100%;
           height: 100%;
+        }
+
+        .scrolling-content {
+          display: flex;
+          animation: scroll 50s linear infinite;
         }
       }
 
