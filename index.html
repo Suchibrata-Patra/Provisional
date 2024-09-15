@@ -17,7 +17,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+    rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -26,11 +28,11 @@
   <title>Provisional</title>
   <style>
     body {
-      background-image: url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/56/71/watsonx-timeline-build.gif');
+      /* background-image: url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/56/71/watsonx-timeline-build.gif'); */
       background-size: contain;
       font-family: "Roboto", sans-serif;
       background-repeat: no-repeat;
-      background-color: #ffda79;
+      background-color: #f8f7f4;
       color: #000000;
       margin: 0;
       /* Reset margin to 0 to ensure full-width sections */
@@ -42,7 +44,7 @@
       justify-content: space-between;
       width: 100vw;
       height: 70px;
-      background-color: #ffffff;
+      background-color: #fcfcfc;
       color: #000000;
       padding-left: 05px;
       padding-right: 05px;
@@ -69,7 +71,7 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      transition: all 0.3s ease;
+      transition: all 2s ease;
     }
 
     .navbar .nav-options button {
@@ -113,27 +115,32 @@
       justify-content: center;
       width: 100vw;
       /* Ensure full width */
-      height: 80vh;
+      height: 75vh;
       text-align: center;
-      color: #000000;
+      color: #0d0c22;
       padding: 0 20px;
-      background: rgba(255, 255, 255);
+      background:#f8f7f4;
       /* border-radius: 10px; */
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
-      border-bottom-left-radius:60px;
-      border-bottom-right-radius:60px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
       box-sizing: border-box;
       /* Ensure padding does not affect width */
       margin: 0;
+      margin-top: 15px;
       /* Reset margin to ensure full width */
+      letter-spacing: -0.5px;
+
     }
 
     .main-heading h1 {
-      font-weight: 500;
-      font-size: 4rem;
+      font-weight: 400;
+      font-size: 72px;
       margin-bottom: 20px;
       font-family: "Source Serif 4", serif;
+      letter-spacing: -0.5px;
+
     }
 
     .main-heading p {
@@ -141,16 +148,17 @@
       margin-bottom: 20px;
       padding-left: 4%;
       padding-right: 4%;
+      font-weight: 400;
     }
 
     .btn-custom {
-      padding: 14px 28px;
+      padding: 0px 40px;
       color: rgb(255, 255, 255);
       border: none;
       background-color: #000000;
       border-radius: 50px;
       font-size: 18px;
-      font-weight: 300;
+      font-weight: 600;
       transition: background-color 1s ease, transform 0.3s ease;
     }
 
@@ -201,15 +209,19 @@
 
     @media (max-width: 992px) {
       .main-heading h1 {
-        font-size: 2.5rem;
+        font-size: 48px;
+        font-weight: 400;
+        letter-spacing: -0.5px;
       }
 
       .main-heading p {
-        font-size: 0.6rem;
+        font-size: 18px;
+        font-weight: 400;
+
       }
 
       .btn-custom {
-        font-size: 0.9rem;
+        font-size: 14px;
       }
     }
 
@@ -226,17 +238,27 @@
         padding: 3%;
       }
 
+      .main-heading {
+        height: 55vh;
+        
+      }
+
       .main-heading h1 {
-        font-size: 2rem;
+        font-size:48px;
+        font-weight: 400;
+        letter-spacing: -0.5px;
+
       }
 
       .main-heading p {
-        font-size: 0.4rem;
+        font-size: 18px;
+        font-weight: 400;
+
       }
 
       .btn-custom {
-        font-size: 1rem;
-        padding: 8px 16px;
+        font-size: 14px;
+        padding: 20px 16px;
       }
 
       .footer {
@@ -251,16 +273,24 @@
       }
 
       .main-heading h1 {
-        font-size: 2rem;
+        font-size: 48px;
+        font-weight: 400;
+        letter-spacing: -0.5px;
+
       }
 
       .main-heading p {
-        font-size: 0.5rem;
+        font-size: 10px;
+        padding-left: 0%;
+        padding-right: 0%;
+        text-align: justify;
+        font-size: 18px;
+        font-weight: 400;
       }
 
       .btn-custom {
-        font-size: 1rem;
-        padding: 8px 12px;
+        font-size: 14px;
+        padding: 15px 20px;
       }
 
       .footer {
@@ -348,24 +378,30 @@
     .search-button:hover {
       background-color: #0056b3;
     }
+
     .logo {
-    display: flex;
-    align-items: center; /* Align items vertically centered */
-    padding-left: 5%;
-}
+      display: flex;
+      align-items: center;
+      /* Align items vertically centered */
+      padding-left: 5%;
+    }
 
-.logo-img {
-    height: 45px; /* Adjust the height as needed */
-    margin-right: 10px; /* Space between the image and text */
-}
+    .logo-img {
+      height: 45px;
+      /* Adjust the height as needed */
+      margin-right: 10px;
+      /* Space between the image and text */
+    }
 
-.logo-text {
-    font-size: 24px; /* Adjust the font size as needed */
-    font-weight: bold; /* Make text bold for emphasis */
-    color: #333; /* Text color */
-    /* Add additional styling as needed */
-}
-
+    .logo-text {
+      font-size: 24px;
+      /* Adjust the font size as needed */
+      font-weight: bold;
+      /* Make text bold for emphasis */
+      color: #333;
+      /* Text color */
+      /* Add additional styling as needed */
+    }
   </style>
 </head>
 
@@ -373,11 +409,11 @@
 
   <!-- Navbar -->
   <div class="navbar">
-<!-- Logo Text -->
-<div class="logo">
-  <img src="timora.png" alt="Timora logo" class="logo-img">
-  <span class="logo-text">Timora.</span>
-</div>
+    <!-- Logo Text -->
+    <div class="logo">
+      <img src="timora.png" alt="Timora logo" class="logo-img">
+      <span class="logo-text">Timora.</span>
+    </div>
 
 
     <!-- Burger Icon (visible on mobile) -->
@@ -403,16 +439,89 @@
     <!-- Main Landing Page Heading -->
     <div class="main-heading">
       <div>
-        <h1>Best Class Rescheduling Software</h1>
-        <h3 style="color: #1F1717;font-weight: 400;">Say yes 👋🏻 to Timora, an free software to ease your day to day admin works of your Org.</h3>
-        <p style="color: #da4fda; font-size: 25px; font-weight: 200;">
-          Experience seamless class scheduling and effortless teacher rescheduling. Our AI-driven platform is designed to optimize operations and ensure minimal disruptions for your institution.
-        </p>
-        
-        <a href="scheduler.html" style="text-decoration: none;"><button class="btn-custom">Get Started</button></a>
+        <h1 style="padding-top:50%;">Best Class Rescheduling Software</h1>
+        <h3 style="color: #0d0c22;font-family:'Courier New', Courier, monospace;line-height: 18px / 32px;">Say yes 👋🏻 to Timora, to ease your day to day rescheduling works
+          of your School.</h3>
+
+
+        <a href="scheduler.html" style="text-decoration: none;"><button class="btn-custom" style="margin-top: 30px;">Get Started</button></a>
       </div>
     </div>
 
+<!-- Scrolling Bars  -->
+<div class="scrolling-wrapper">
+  <div class="scrolling-content">
+    <!-- Content duplicated for continuous scrolling -->
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 1">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 2">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 3">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 4">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 5">
+    </div>
+    <!-- Duplicated Content for seamless loop -->
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 1">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 2">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 3">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 4">
+    </div>
+    <div class="card">
+      <img src="https://cdn.dribbble.com/userupload/16590015/file/original-0445001429e34389971ac48237c7cab5.jpg?resize=1024x801" alt="Image 5">
+    </div>
+  </div>
+</div>
+
+<style>
+  .scrolling-wrapper {
+    margin: 20px;
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+  }
+
+  .scrolling-content {
+    display: flex;
+    animation: scroll 20s linear infinite;
+  }
+
+  .card {
+    display: inline-block;
+    min-width: 300px;
+    margin-right: 20px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
     <!-- Content Section -->
     <div class="container">
       <div class="row rescheduling-section">
@@ -421,25 +530,27 @@
             Why Choose Timora. ?
           </h2>
           <ul
-            style="font-size: 20px; font-weight: 300; text-align: justify; margin: 0; padding-right: 15px; list-style: none;">
-            <li style="margin-bottom: 15px;">
-              <b style="font-weight: 500;">Automated Scheduling:</b> Say goodbye to manual adjustments with our
+            style="font-size: 20px; font-weight: 300; text-align:left; margin: 0; padding-right: 15px; list-style:disc;line-height:1.2em;">
+            <li style="margin-bottom:5px;">
+              <b style="font-weight: 500;">Automated Scheduling:</b> <br>Say goodbye to manual adjustments with our
               AI-driven scheduling algorithm.
             </li>
             <li style="margin-bottom: 15px;">
-              <b style="font-weight: 500;">Real-Time Updates:</b> Get instant notifications and updates about class
+              <b style="font-weight: 500;">Real-Time Updates:</b> <br>Get instant notifications and updates about class
               changes.
             </li>
             <li style="margin-bottom: 15px;">
-              <b style="font-weight: 500;">Optimized Resource Allocation:</b> Maximize the utilization of your teaching
+              <b style="font-weight: 500;">Optimized Resource Allocation:</b> <br>Maximize the utilization of your
+              teaching
               resources effectively.
             </li>
             <li style="margin-bottom: 15px;">
-              <b style="font-weight: 500;">Easy Integration:</b> Seamlessly integrate with your existing school
+              <b style="font-weight: 500;">Easy Integration:</b> <br>Seamlessly integrate with your existing school
               management system.
             </li>
             <li style="margin-bottom: 15px;">
-              <b style="font-weight: 500;">Data-Driven Insights:</b> Access analytics to monitor effectiveness and make
+              <b style="font-weight: 500;">Data-Driven Insights:</b> <br>Access analytics to monitor effectiveness and
+              make
               informed decisions.
             </li>
           </ul>
@@ -451,7 +562,38 @@
             alt="Rescheduling Algorithm">
         </div>
       </div>
+
+
+      <div class="row rescheduling-section"
+        style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+        <div class="col-md-12 col-lg-6" style="display: flex; justify-content: center;">
+          <img
+            src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_558,w_558/v1684887108/assets/76/baf1ea-385a-408c-846b-59211086196c/original/u4b-square.png"
+            alt="Rescheduling Algorithm" style="max-width: 100%; height: auto;">
+        </div>
+        <div class="col-md-12 col-lg-6" style="padding: 0; display: flex; justify-content: center;">
+          <h2 style="font-size: 50px; font-weight: 800; text-align: left; margin-bottom: 20px;">
+            Why Choose Timora. ?
+          </h2>
+        </div>
+      </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Footer -->
     <div class="footer"
