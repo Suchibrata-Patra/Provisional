@@ -17,308 +17,331 @@
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
   <title>Provisional</title>
- <style>
+  <style>
+    body {
+      background-image: url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/56/71/watsonx-timeline-build.gif');
+      background-size: contain;
+      font-family: "Roboto", sans-serif;
+      background-repeat: no-repeat;
+      background-color: #ffda79;
+      color: #000000;
+      margin: 0;
+      /* Reset margin to 0 to ensure full-width sections */
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100vw;
+      height: 70px;
+      background-color: #ffffff;
+      color: #000000;
+      padding-left: 05px;
+      padding-right: 05px;
+      padding-bottom: 20px;
+      padding-top: 10px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #e0e0e0;
+      position: relative;
+    }
+
+    .navbar .logo {
+      font-size: 32px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .navbar .burger-icon {
+      display: none;
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    .navbar .nav-options {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .nav-options button {
+      background-color: transparent;
+      border: none;
+      color: #000000;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 10px 15px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-radius: 25px;
+    }
+
+    .navbar .nav-options button:hover {
+      background-color: #f0f0f0;
+      color: #333333;
+    }
+
+    .navbar .nav-options .btn-report-error {
+      background-color: #000000;
+      color: #ffffff;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .nav-options .btn-report-error:hover {
+      background-color: #333333;
+    }
+
+    .navbar .nav-options .btn-report-error .material-symbols-outlined {
+      font-size: 18px;
+      margin-left: 8px;
+    }
+
+    .main-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      /* Ensure full width */
+      height: 80vh;
+      text-align: center;
+      color: #000000;
+      padding: 0 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-sizing: border-box;
+      /* Ensure padding does not affect width */
+      margin: 0;
+      /* Reset margin to ensure full width */
+    }
+
+    .main-heading h1 {
+      font-weight: 700;
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .main-heading p {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+
+    .btn-custom {
+      padding: 12px 24px;
+      color: rgb(255, 255, 255);
+      border: none;
+      background-color: #000000;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #333333;
+      transform: scale(1.05);
+    }
+
+    .container {
+      padding: 2rem 5%;
+    }
+
+    .rescheduling-section {
+      margin-top: 5rem;
+    }
+
+    .rescheduling-section img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .footer {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      background-color: #000000;
+      color: #ffffff;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 20px;
+    }
+
+    .footer .social-icons {
+      margin: 10px 0;
+    }
+
+    .footer .social-icons a {
+      color: #ffffff;
+      font-size: 24px;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer .social-icons a:hover {
+      color: #cccccc;
+    }
+
+    @media (max-width: 992px) {
+      .main-heading h1 {
+        font-size: 2.5rem;
+      }
+
+      .main-heading p {
+        font-size: 1.1rem;
+      }
+
+      .btn-custom {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar .nav-options {
+        display: none;
+      }
+
+      .navbar .burger-icon {
+        display: block;
+      }
+
+      .container {
+        padding: 3%;
+      }
+
+      .main-heading h1 {
+        font-size: 2rem;
+      }
+
+      .main-heading p {
+        font-size: 1rem;
+      }
+
+      .btn-custom {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+      }
+
+      .footer {
+        font-size: 0.85rem;
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
       body {
-  background-image: url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/56/71/watsonx-timeline-build.gif');
-  background-size: contain;
-  font-family: "Roboto", sans-serif;
-  background-repeat: no-repeat;
-  background-color: #ffda79;
-  color: #000000;
-  margin: 0; /* Reset margin to 0 to ensure full-width sections */
-}
+        font-size: 1rem;
+      }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100vw;
-  height: 70px;
-  background-color: #ffffff;
-  color: #000000;
-  padding-left:05px;
-  padding-right: 05px;
-  padding-bottom: 20px;
-  padding-top: 10px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #e0e0e0;
-  position: relative;
-}
+      .main-heading h1 {
+        font-size: 1.5rem;
+      }
 
-.navbar .logo {
-  font-size: 32px;
-  font-weight: 700;
-  color: #000000;
-}
+      .main-heading p {
+        font-size: 0.9rem;
+      }
 
-.navbar .burger-icon {
-  display: none;
-  cursor: pointer;
-  font-size: 30px;
-}
+      .btn-custom {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+      }
 
-.navbar .nav-options {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: all 0.3s ease;
-}
+      .footer {
+        font-size: 0.75rem;
+        padding: 10px;
+      }
+    }
 
-.navbar .nav-options button {
-  background-color: transparent;
-  border: none;
-  color: #000000;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 10px 15px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 25px;
-}
+    /* Ensure nav-options is hidden on mobile by default */
+    .nav-options {
+      display: flex;
+    }
 
-.navbar .nav-options button:hover {
-  background-color: #f0f0f0;
-  color: #333333;
-}
+    /* Show nav-options when the menu is toggled */
+    .nav-options.mobile-menu {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      /* Adjust as needed */
+      right: 0;
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      width: 100%;
+      padding: 4px;
+    }
 
-.navbar .nav-options .btn-report-error {
-  background-color: #000000;
-  color: #ffffff;
-  border-radius: 25px;
-  padding: 10px 20px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-}
+    .burger-icon {
+      display: block;
+    }
 
-.navbar .nav-options .btn-report-error:hover {
-  background-color: #333333;
-}
+    @media (min-width: 769px) {
+      .navbar .nav-options {
+        display: flex;
+      }
 
-.navbar .nav-options .btn-report-error .material-symbols-outlined {
-  font-size: 18px;
-  margin-left: 8px;
-}
+      .navbar .burger-icon {
+        display: none;
+      }
 
-.main-heading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw; /* Ensure full width */
-  height: 80vh;
-  text-align: center;
-  color: #000000;
-  padding: 0 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  box-sizing: border-box; /* Ensure padding does not affect width */
-  margin: 0; /* Reset margin to ensure full width */
-}
+      .nav-options.mobile-menu {
+        display: none;
+      }
+    }
 
-.main-heading h1 {
-  font-weight: 700;
-  font-size: 4rem;
-  margin-bottom: 20px;
-}
+    .search-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px;
+    }
 
-.main-heading p {
-  font-size: 1.25rem;
-  margin-bottom: 20px;
-  padding-left:4%;
-  padding-right:4%;
-}
+    .search-input {
+      border-radius: 50px;
+      padding: 10px;
+      border: 1px solid rgb(220, 220, 220);
+      /* Default border color */
+      width: 300px;
+      font-size: 14px;
+      outline: none;
+      padding-left: 20px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      /* Smooth transition for border color and box-shadow */
+    }
 
-.btn-custom {
-  padding: 12px 24px;
-  color: rgb(255, 255, 255);
-  border: none;
-  background-color: #000000;
-  border-radius: 50px;
-  font-size: 18px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
+    .search-input:hover,
+    .search-input:focus {
+      border: 1px solid #d8abed;
+      /* Border color on hover and focus */
+      box-shadow: 0 0 8px rgba(232, 161, 226, 0.2);
+      /* Box-shadow effect on hover and focus */
+    }
 
-.btn-custom:hover {
-  background-color: #333333;
-  transform: scale(1.05);
-}
+    .search-button {
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 50px;
+      padding: 10px 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-.container {
-  padding: 2rem 5%;
-}
-
-.rescheduling-section {
-  margin-top: 5rem;
-}
-
-.rescheduling-section img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background-color: #000000;
-  color: #ffffff;
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 20px;
-}
-
-.footer .social-icons {
-  margin: 10px 0;
-}
-
-.footer .social-icons a {
-  color: #ffffff;
-  font-size: 24px;
-  margin: 0 10px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer .social-icons a:hover {
-  color: #cccccc;
-}
-
-@media (max-width: 992px) {
-  .main-heading h1 {
-    font-size: 2.5rem;
-  }
-
-  .main-heading p {
-    font-size: 1.1rem;
-  }
-
-  .btn-custom {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar .nav-options {
-    display: none;
-  }
-
-  .navbar .burger-icon {
-    display: block;
-  }
-
-  .container {
-    padding: 3%;
-  }
-
-  .main-heading h1 {
-    font-size: 2rem;
-  }
-
-  .main-heading p {
-    font-size: 1rem;
-  }
-
-  .btn-custom {
-    font-size: 0.85rem;
-    padding: 8px 16px;
-  }
-
-  .footer {
-    font-size: 0.85rem;
-    padding: 15px;
-  }
-}
-
-@media (max-width: 576px) {
-  body {
-    font-size: 1rem;
-  }
-
-  .main-heading h1 {
-    font-size: 1.5rem;
-  }
-
-  .main-heading p {
-    font-size: 0.9rem;
-  }
-
-  .btn-custom {
-    font-size: 0.75rem;
-    padding: 8px 12px;
-  }
-
-  .footer {
-    font-size: 0.75rem;
-    padding: 10px;
-  }
-}
-
-/* Ensure nav-options is hidden on mobile by default */
-.nav-options {
-  display: flex;
-}
-
-/* Show nav-options when the menu is toggled */
-.nav-options.mobile-menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 70px; /* Adjust as needed */
-  right: 0;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  width: 100%;
-  padding: 4px;
-}
-
-.burger-icon {
-  display: block;
-}
-
-@media (min-width: 769px) {
-  .navbar .nav-options {
-    display: flex;
-  }
-
-  .navbar .burger-icon {
-    display: none;
-  }
-
-  .nav-options.mobile-menu {
-    display: none;
-  }
-}
- .search-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px;
-        }
-        .search-input {
-            border-radius: 50px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            width: 300px;
-            font-size: 16px;
-            outline: none;
-        }
-        .search-button {
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 50px;
-            padding: 10px 20px;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .search-button:hover {
-            background-color: #0056b3;
-        }
- </style>
+    .search-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 
 <body>
@@ -330,98 +353,109 @@
       Timora.
     </div>
 
-<!-- Burger Icon (visible on mobile) -->
-<div class="burger-icon" onclick="toggleMenu()">☰</div>
+    <!-- Burger Icon (visible on mobile) -->
+    <div class="burger-icon" onclick="toggleMenu()">☰</div>
 
-<!-- Container for buttons (hidden on mobile) -->
-<div class="nav-options">
-  <!-- Help Button -->
-  <input type="search" id="searchBar" class="search-input" placeholder="Search...">
-  <button onclick="window.location.href='Help.html';">Help</button>
-  <button onclick="window.location.href='Help.html';">Help</button>
+    <!-- Container for buttons (hidden on mobile) -->
+    <div class="nav-options">
+      <!-- Help Button -->
+      <button onclick="window.location.href='Help.html';">Help</button>
+      <button onclick="window.location.href='Help.html';">Help</button>
+      <!-- Edit Schedule Button -->
+      <button onclick="window.location.href='edit.html';">Edit Schedule</button>
 
-
-  <!-- Edit Schedule Button -->
-  <button onclick="window.location.href='edit.html';">Edit Schedule</button>
-
-  <!-- Report Error Button -->
-  <button class="btn-report-error" onclick="window.location.href='error_report.html';">
-    Report Error
-    <!-- <span class="material-symbols-outlined">error</span> -->
-  </button>
-</div>
-
-
-  <!-- Main Landing Page Heading -->
-  <div class="main-heading" >
-    <div>
-      <h1>Best in Class Rescheduling Software</h1>
-      <p>Experience seamless class scheduling and automated teacher rescheduling with ease. Our AI-driven platform is designed to keep your institution running smoothly with minimal interruptions.</p>
-      <a href="scheduler.html" style="text-decoration: none;"><button class="btn-custom">Get Started</button></a>
+      <input type="search" id="searchBar" class="search-input" placeholder="Search..." style="font-weight: 200;">
+      <!-- Report Error Button -->
+      <button class="btn-report-error" onclick="window.location.href='error_report.html';">
+        Report Error
+        <!-- <span class="material-symbols-outlined">error</span> -->
+      </button>
     </div>
-  </div>
 
-  <!-- Content Section -->
-  <div class="container">
-    <div class="row rescheduling-section">
-      <div class="col-md-12 col-lg-6">
-        <h2 style="font-size: 50px; font-weight: 800; text-align: left; margin-bottom: 20px;">
-            Why Choose Timora. ?
-        </h2>
-        <ul style="font-size: 20px; font-weight: 300; text-align: justify; margin: 0; padding-right: 15px; list-style: none;">
-            <li style="margin-bottom: 15px;">
-                <b style="font-weight: 500;">Automated Scheduling:</b> Say goodbye to manual adjustments with our AI-driven scheduling algorithm.
-            </li>
-            <li style="margin-bottom: 15px;">
-                <b style="font-weight: 500;">Real-Time Updates:</b> Get instant notifications and updates about class changes.
-            </li>
-            <li style="margin-bottom: 15px;">
-                <b style="font-weight: 500;">Optimized Resource Allocation:</b> Maximize the utilization of your teaching resources effectively.
-            </li>
-            <li style="margin-bottom: 15px;">
-                <b style="font-weight: 500;">Easy Integration:</b> Seamlessly integrate with your existing school management system.
-            </li>
-            <li style="margin-bottom: 15px;">
-                <b style="font-weight: 500;">Data-Driven Insights:</b> Access analytics to monitor effectiveness and make informed decisions.
-            </li>
-        </ul>
-    </div>
-    
-      <div class="col-md-12 col-lg-6">
-        <img src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_558,w_558/v1684887108/assets/76/baf1ea-385a-408c-846b-59211086196c/original/u4b-square.png" alt="Rescheduling Algorithm">
+
+    <!-- Main Landing Page Heading -->
+    <div class="main-heading">
+      <div>
+        <h1>Best in Class Rescheduling Software</h1>
+        <p>Experience seamless class scheduling and automated teacher rescheduling with ease. Our AI-driven platform is
+          designed to keep your institution running smoothly with minimal interruptions.</p>
+        <a href="scheduler.html" style="text-decoration: none;"><button class="btn-custom">Get Started</button></a>
       </div>
     </div>
-  </div>
 
- <!-- Footer -->
-<div class="footer" style="background-color: #f0f0f0; color: #000000; text-align: center; padding: 20px; box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);">
-  <p style="margin: 0;">© 2024 Timora Inc. All rights reserved.</p>
-  <div class="social-icons" style="margin: 10px 0;">
-      <a href="https://www.facebook.com/Timora" target="_blank" style="color: #000000; font-size: 24px; text-decoration: none; margin: 0 10px; transition: color 0.3s ease;">Facebook</a>
-      <a href="https://www.twitter.com/Timora" target="_blank" style="color: #000000; font-size: 24px; text-decoration: none; margin: 0 10px; transition: color 0.3s ease;">Twitter</a>
-      <a href="https://www.linkedin.com/company/timora" target="_blank" style="color: #000000; font-size: 24px; text-decoration: none; margin: 0 10px; transition: color 0.3s ease;">LinkedIn</a>
-  </div>
-</div>
+    <!-- Content Section -->
+    <div class="container">
+      <div class="row rescheduling-section">
+        <div class="col-md-12 col-lg-6">
+          <h2 style="font-size: 50px; font-weight: 800; text-align: left; margin-bottom: 20px;">
+            Why Choose Timora. ?
+          </h2>
+          <ul
+            style="font-size: 20px; font-weight: 300; text-align: justify; margin: 0; padding-right: 15px; list-style: none;">
+            <li style="margin-bottom: 15px;">
+              <b style="font-weight: 500;">Automated Scheduling:</b> Say goodbye to manual adjustments with our
+              AI-driven scheduling algorithm.
+            </li>
+            <li style="margin-bottom: 15px;">
+              <b style="font-weight: 500;">Real-Time Updates:</b> Get instant notifications and updates about class
+              changes.
+            </li>
+            <li style="margin-bottom: 15px;">
+              <b style="font-weight: 500;">Optimized Resource Allocation:</b> Maximize the utilization of your teaching
+              resources effectively.
+            </li>
+            <li style="margin-bottom: 15px;">
+              <b style="font-weight: 500;">Easy Integration:</b> Seamlessly integrate with your existing school
+              management system.
+            </li>
+            <li style="margin-bottom: 15px;">
+              <b style="font-weight: 500;">Data-Driven Insights:</b> Access analytics to monitor effectiveness and make
+              informed decisions.
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-12 col-lg-6">
+          <img
+            src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_558,w_558/v1684887108/assets/76/baf1ea-385a-408c-846b-59211086196c/original/u4b-square.png"
+            alt="Rescheduling Algorithm">
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer"
+      style="background-color: #f0f0f0; color: #000000; text-align: center; padding: 20px; box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);">
+      <p style="margin: 0;">© 2024 Timora Inc. All rights reserved.</p>
+      <div class="social-icons" style="margin: 10px 0;">
+        <a href="https://www.facebook.com/Timora" target="_blank"
+          style="color: #000000; font-size: 24px; text-decoration: none; margin: 0 10px; transition: color 0.3s ease;">Facebook</a>
+        <a href="https://www.twitter.com/Timora" target="_blank"
+          style="color: #000000; font-size: 24px; text-decoration: none; margin: 0 10px; transition: color 0.3s ease;">Twitter</a>
+        <a href="https://www.linkedin.com/company/timora" target="_blank"
+          style="color: #000000; font-size: 24px; text-decoration: none; margin: 0 10px; transition: color 0.3s ease;">LinkedIn</a>
+      </div>
+    </div>
 
 
-  <script>
-   function toggleMenu() {
-  var navOptions = document.querySelector('.nav-options');
-  navOptions.classList.toggle('mobile-menu');
-}
+    <script>
+      function toggleMenu() {
+        var navOptions = document.querySelector('.nav-options');
+        navOptions.classList.toggle('mobile-menu');
+      }
 
-  </script>
-  <script>
-    function performSearch() {
+    </script>
+    <script>
+      function performSearch() {
         const query = document.getElementById("searchBar").value;
         if (query) {
-            // You can define your search logic here. For now, it just redirects to a search URL with the query.
-            window.location.href = `https://www.example.com/search?q=${encodeURIComponent(query)}`;
+          // You can define your search logic here. For now, it just redirects to a search URL with the query.
+          window.location.href = `https://www.example.com/search?q=${encodeURIComponent(query)}`;
         } else {
-            alert("Please enter a search query.");
+          alert("Please enter a search query.");
         }
-    }
-</script>
+      }
+    </script>
 </body>
 
 </html>
