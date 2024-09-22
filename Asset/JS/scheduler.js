@@ -7,7 +7,6 @@ let provisionalAssignments = {}; // Track which teacher is assigned at each time
 let teacherClassCount = {}; // To track total classes (regular + provisional) for each teacher
 let excludedClasses = []; // This should be set by your savePreferences function.
 
-
 // Fetch the schedule data
 function fetchScheduleData() {
   fetch("/final.json")
@@ -45,9 +44,9 @@ function loadAvailableTeachers() {
 }
 function savePreferences() {
   excludedClasses = []; // Reset excluded classes
-  const checkboxes = document.querySelectorAll('.class-checkbox');
+  const checkboxes = document.querySelectorAll(".class-checkbox");
 
-  checkboxes.forEach(checkbox => {
+  checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
       excludedClasses.push(checkbox.value); // Add checked classes to the excludedClasses array
     }
@@ -56,7 +55,6 @@ function savePreferences() {
   // Optionally, close the modal or overlay
   document.getElementById("preferencesOverlay").style.display = "none"; // Hide the preferences overlay
 }
-
 
 window.onload = fetchScheduleData;
 
@@ -171,7 +169,6 @@ document.querySelector(".close").onclick = function () {
   document.getElementById("preferencesModal").style.display = "none";
 };
 
-
 function generateProvisionalRoutine() {
   document.getElementById("loader-overlay").style.display = "flex";
   setTimeout(() => {
@@ -184,8 +181,9 @@ function generateProvisionalRoutine() {
 
   if (day && scheduleData[day]) {
     // Get excluded classes based on checked checkboxes
-    let excludedClasses = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-      .map((checkbox) => checkbox.nextSibling.textContent.trim());
+    let excludedClasses = Array.from(
+      document.querySelectorAll('input[type="checkbox"]:checked')
+    ).map((checkbox) => checkbox.nextSibling.textContent.trim());
 
     // Track allocated teachers
     let allocatedTeachers = new Set();
@@ -218,7 +216,10 @@ function generateProvisionalRoutine() {
 
           // Check if next classes are consecutive
           for (let i = index + 1; i < entries.length; i++) {
-            if (entries[i].class === classLevel && entries[i].section === section) {
+            if (
+              entries[i].class === classLevel &&
+              entries[i].section === section
+            ) {
               if (entries[i].timeSlot === entries[i - 1].timeSlot + 1) {
                 consecutiveClasses.push(entries[i]);
               } else {
@@ -230,7 +231,10 @@ function generateProvisionalRoutine() {
         }
 
         // Get all consecutive classes for the absent teacher
-        const consecutiveClasses = getConsecutiveClasses(scheduleData[day], index);
+        const consecutiveClasses = getConsecutiveClasses(
+          scheduleData[day],
+          index
+        );
         let subjectTeachers = availableTeachers.filter((teacher) => {
           const isSameSubject = scheduleData[day].some(
             (e) => e.teacher === teacher && e.subject === absentTeacherSubject
@@ -289,11 +293,13 @@ function generateProvisionalRoutine() {
           // Allocate partially or mark as Off Period for Grade 11/12
           consecutiveClasses.forEach((classEntry, i) => {
             let replacementTeacher = subjectTeachers.find((teacher) => {
-              return !allocatedTeachers.has(teacher) && // Check if not allocated
+              return (
+                !allocatedTeachers.has(teacher) && // Check if not allocated
                 !scheduleData[day].some(
                   (e) =>
                     e.teacher === teacher && e.timeSlot === classEntry.timeSlot
-                );
+                )
+              );
             });
 
             if (replacementTeacher && i === 0) {
@@ -324,7 +330,8 @@ function generateProvisionalRoutine() {
       }
     });
 
-    document.getElementById("provisionalRoutineSection").style.display = "block";
+    document.getElementById("provisionalRoutineSection").style.display =
+      "block";
   } else {
     document.getElementById("provisionalRoutineSection").style.display = "none";
   }
