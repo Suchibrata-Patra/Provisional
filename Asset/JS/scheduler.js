@@ -5,6 +5,8 @@ let availableTeachers = [];
 let replacementTeachers = [];
 let provisionalAssignments = {}; // Track which teacher is assigned at each time slot
 let teacherClassCount = {}; // To track total classes (regular + provisional) for each teacher
+let excludedClasses = []; // This should be set by your savePreferences function.
+
 
 // Fetch the schedule data
 function fetchScheduleData() {
@@ -41,6 +43,20 @@ function loadAvailableTeachers() {
   });
   availableTeachers = Array.from(availableTeachers);
 }
+function savePreferences() {
+  excludedClasses = []; // Reset excluded classes
+  const checkboxes = document.querySelectorAll('.class-checkbox');
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      excludedClasses.push(checkbox.value); // Add checked classes to the excludedClasses array
+    }
+  });
+
+  // Optionally, close the modal or overlay
+  document.getElementById("preferencesOverlay").style.display = "none"; // Hide the preferences overlay
+}
+
 
 window.onload = fetchScheduleData;
 
@@ -156,7 +172,6 @@ document.querySelector(".close").onclick = function () {
 };
 
 
-
 function generateProvisionalRoutine() {
   document.getElementById("loader-overlay").style.display = "flex";
   setTimeout(() => {
@@ -168,32 +183,32 @@ function generateProvisionalRoutine() {
   provisionalTable.innerHTML = "";
 
   if (day && scheduleData[day]) {
-    let replacementTeachers = availableTeachers.filter(
-      (teacher) => !absentTeachers.includes(teacher)
-    );
-
-    // Create a map to track the number of classes for each replacement teacher
-    let teacherClassCount = {};
-    replacementTeachers.forEach((teacher) => {
-      teacherClassCount[teacher] = 0;
-    });
+    // Get excluded classes based on checked checkboxes
+    let excludedClasses = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+      .map((checkbox) => checkbox.nextSibling.textContent.trim());
 
     // Track allocated teachers
     let allocatedTeachers = new Set();
 
-    // Count classes for each available teacher
-    scheduleData[day].forEach((entry) => {
-      if (replacementTeachers.includes(entry.teacher)) {
-        teacherClassCount[entry.teacher]++;
-      }
-    });
-
     // Generate the provisional routine for absent teachers
     scheduleData[day].forEach((entry, index) => {
+      const classLevel = entry.class;
+
+      // Check if the class is excluded
+      if (excludedClasses.includes(classLevel)) {
+        // If class is excluded, show a "No period for this class" message only once for each class level
+        if (index === 0 || entry.class !== scheduleData[day][index - 1].class) {
+          let row = `<tr>
+            <td colspan="5">No period for ${classLevel}</td>
+          </tr>`;
+          provisionalTable.innerHTML += row;
+        }
+        return; // Skip excluded classes
+      }
+
       if (absentTeachers.includes(entry.teacher)) {
         const absentTeacherSubject = entry.subject;
         const timeSlot = entry.timeSlot;
-        const classLevel = entry.class;
 
         // Helper function to get consecutive classes
         function getConsecutiveClasses(entries, index) {
@@ -216,7 +231,7 @@ function generateProvisionalRoutine() {
 
         // Get all consecutive classes for the absent teacher
         const consecutiveClasses = getConsecutiveClasses(scheduleData[day], index);
-        let subjectTeachers = replacementTeachers.filter((teacher) => {
+        let subjectTeachers = availableTeachers.filter((teacher) => {
           const isSameSubject = scheduleData[day].some(
             (e) => e.teacher === teacher && e.subject === absentTeacherSubject
           );
@@ -259,7 +274,6 @@ function generateProvisionalRoutine() {
           // Check if the replacementTeacher has already been allocated
           if (!allocatedTeachers.has(replacementTeacher)) {
             consecutiveClasses.forEach((classEntry) => {
-              teacherClassCount[replacementTeacher]++;
               allocatedTeachers.add(replacementTeacher); // Mark as allocated
               let row = `<tr>
                 <td>${classEntry.class}</td>
@@ -283,7 +297,6 @@ function generateProvisionalRoutine() {
             });
 
             if (replacementTeacher && i === 0) {
-              teacherClassCount[replacementTeacher]++;
               allocatedTeachers.add(replacementTeacher); // Mark as allocated
               let row = `<tr>
                 <td>${classEntry.class}</td>
